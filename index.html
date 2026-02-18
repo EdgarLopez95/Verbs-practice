@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verb Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>This is a paragraph</p>
+    <div id="app">
+        <header class="app-header">
+            <span class="app-header-title">Verb Flow</span>
+            <button type="button" id="loginBtn" class="app-header-login">Login</button>
+        </header>
+        <main class="app-main">
+            <section id="practice" class="view">
+                <h1>Practice</h1>
+            </section>
+        </main>
+    </div>
+
+    <div id="loginModalOverlay" class="modal-overlay hidden" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+            <h2 id="loginModalTitle" class="modal-title">Save your progress</h2>
+            <p class="modal-description">Log in to sync your progress across devices.</p>
+            <form class="modal-form" id="loginModalForm" novalidate>
+                <label for="loginModalEmail" class="modal-label">Email</label>
+                <input type="email" id="loginModalEmail" class="modal-input" autocomplete="email" />
+                <label for="loginModalPassword" class="modal-label">Password</label>
+                <input type="password" id="loginModalPassword" class="modal-input" autocomplete="current-password" />
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-primary">Continue</button>
+                    <button type="button" class="modal-btn modal-btn-secondary" id="loginModalClose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="src/app/bootstrap.js"></script>
 </body>
 </html>

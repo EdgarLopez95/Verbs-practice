@@ -1,0 +1,3240 @@
+{
+  "version": "1.0",
+  "language": "en",
+  "mode": "base_to_past_pp",
+  "verbs_count": 299,
+  "verbs": [
+    {
+      "id": "be",
+      "forms": {
+        "base": ["be"],
+        "past": ["was", "were"],
+        "pp": ["been"]
+      },
+      "meaning": {
+        "es": ["ser", "estar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "have",
+      "forms": {
+        "base": ["have"],
+        "past": ["had"],
+        "pp": ["had"]
+      },
+      "meaning": {
+        "es": ["tener"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "do",
+      "forms": {
+        "base": ["do"],
+        "past": ["did"],
+        "pp": ["done"]
+      },
+      "meaning": {
+        "es": ["hacer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "say",
+      "forms": {
+        "base": ["say"],
+        "past": ["said"],
+        "pp": ["said"]
+      },
+      "meaning": {
+        "es": ["decir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "get",
+      "forms": {
+        "base": ["get"],
+        "past": ["got"],
+        "pp": ["gotten"]
+      },
+      "meaning": {
+        "es": ["obtener"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "make",
+      "forms": {
+        "base": ["make"],
+        "past": ["made"],
+        "pp": ["made"]
+      },
+      "meaning": {
+        "es": ["hacer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "go",
+      "forms": {
+        "base": ["go"],
+        "past": ["went"],
+        "pp": ["gone"]
+      },
+      "meaning": {
+        "es": ["ir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "know",
+      "forms": {
+        "base": ["know"],
+        "past": ["knew"],
+        "pp": ["known"]
+      },
+      "meaning": {
+        "es": ["saber", "conocer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "take",
+      "forms": {
+        "base": ["take"],
+        "past": ["took"],
+        "pp": ["taken"]
+      },
+      "meaning": {
+        "es": ["tomar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "see",
+      "forms": {
+        "base": ["see"],
+        "past": ["saw"],
+        "pp": ["seen"]
+      },
+      "meaning": {
+        "es": ["ver"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "come",
+      "forms": {
+        "base": ["come"],
+        "past": ["came"],
+        "pp": ["come"]
+      },
+      "meaning": {
+        "es": ["venir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "think",
+      "forms": {
+        "base": ["think"],
+        "past": ["thought"],
+        "pp": ["thought"]
+      },
+      "meaning": {
+        "es": ["pensar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "look",
+      "forms": {
+        "base": ["look"],
+        "past": ["looked"],
+        "pp": ["looked"]
+      },
+      "meaning": {
+        "es": ["mirar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "want",
+      "forms": {
+        "base": ["want"],
+        "past": ["wanted"],
+        "pp": ["wanted"]
+      },
+      "meaning": {
+        "es": ["querer"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "give",
+      "forms": {
+        "base": ["give"],
+        "past": ["gave"],
+        "pp": ["given"]
+      },
+      "meaning": {
+        "es": ["dar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "use",
+      "forms": {
+        "base": ["use"],
+        "past": ["used"],
+        "pp": ["used"]
+      },
+      "meaning": {
+        "es": ["usar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "find",
+      "forms": {
+        "base": ["find"],
+        "past": ["found"],
+        "pp": ["found"]
+      },
+      "meaning": {
+        "es": ["encontrar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "tell",
+      "forms": {
+        "base": ["tell"],
+        "past": ["told"],
+        "pp": ["told"]
+      },
+      "meaning": {
+        "es": ["decir", "contar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "ask",
+      "forms": {
+        "base": ["ask"],
+        "past": ["asked"],
+        "pp": ["asked"]
+      },
+      "meaning": {
+        "es": ["preguntar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "work",
+      "forms": {
+        "base": ["work"],
+        "past": ["worked"],
+        "pp": ["worked"]
+      },
+      "meaning": {
+        "es": ["trabajar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "feel",
+      "forms": {
+        "base": ["feel"],
+        "past": ["felt"],
+        "pp": ["felt"]
+      },
+      "meaning": {
+        "es": ["sentir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "leave",
+      "forms": {
+        "base": ["leave"],
+        "past": ["left"],
+        "pp": ["left"]
+      },
+      "meaning": {
+        "es": ["dejar", "salir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "call",
+      "forms": {
+        "base": ["call"],
+        "past": ["called"],
+        "pp": ["called"]
+      },
+      "meaning": {
+        "es": ["llamar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "put",
+      "forms": {
+        "base": ["put"],
+        "past": ["put"],
+        "pp": ["put"]
+      },
+      "meaning": {
+        "es": ["poner"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "keep",
+      "forms": {
+        "base": ["keep"],
+        "past": ["kept"],
+        "pp": ["kept"]
+      },
+      "meaning": {
+        "es": ["mantener"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "begin",
+      "forms": {
+        "base": ["begin"],
+        "past": ["began"],
+        "pp": ["begun"]
+      },
+      "meaning": {
+        "es": ["empezar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "help",
+      "forms": {
+        "base": ["help"],
+        "past": ["helped"],
+        "pp": ["helped"]
+      },
+      "meaning": {
+        "es": ["ayudar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "talk",
+      "forms": {
+        "base": ["talk"],
+        "past": ["talked"],
+        "pp": ["talked"]
+      },
+      "meaning": {
+        "es": ["hablar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "start",
+      "forms": {
+        "base": ["start"],
+        "past": ["started"],
+        "pp": ["started"]
+      },
+      "meaning": {
+        "es": ["comenzar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "show",
+      "forms": {
+        "base": ["show"],
+        "past": ["showed"],
+        "pp": ["shown"]
+      },
+      "meaning": {
+        "es": ["mostrar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "hear",
+      "forms": {
+        "base": ["hear"],
+        "past": ["heard"],
+        "pp": ["heard"]
+      },
+      "meaning": {
+        "es": ["oír"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "run",
+      "forms": {
+        "base": ["run"],
+        "past": ["ran"],
+        "pp": ["run"]
+      },
+      "meaning": {
+        "es": ["correr"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "move",
+      "forms": {
+        "base": ["move"],
+        "past": ["moved"],
+        "pp": ["moved"]
+      },
+      "meaning": {
+        "es": ["mover"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "live",
+      "forms": {
+        "base": ["live"],
+        "past": ["lived"],
+        "pp": ["lived"]
+      },
+      "meaning": {
+        "es": ["vivir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "bring",
+      "forms": {
+        "base": ["bring"],
+        "past": ["brought"],
+        "pp": ["brought"]
+      },
+      "meaning": {
+        "es": ["traer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "write",
+      "forms": {
+        "base": ["write"],
+        "past": ["wrote"],
+        "pp": ["written"]
+      },
+      "meaning": {
+        "es": ["escribir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "sit",
+      "forms": {
+        "base": ["sit"],
+        "past": ["sat"],
+        "pp": ["sat"]
+      },
+      "meaning": {
+        "es": ["sentarse"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "stand",
+      "forms": {
+        "base": ["stand"],
+        "past": ["stood"],
+        "pp": ["stood"]
+      },
+      "meaning": {
+        "es": ["estar de pie"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "lose",
+      "forms": {
+        "base": ["lose"],
+        "past": ["lost"],
+        "pp": ["lost"]
+      },
+      "meaning": {
+        "es": ["perder"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "pay",
+      "forms": {
+        "base": ["pay"],
+        "past": ["paid"],
+        "pp": ["paid"]
+      },
+      "meaning": {
+        "es": ["pagar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "meet",
+      "forms": {
+        "base": ["meet"],
+        "past": ["met"],
+        "pp": ["met"]
+      },
+      "meaning": {
+        "es": ["conocer", "reunirse"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "learn",
+      "forms": {
+        "base": ["learn"],
+        "past": ["learned"],
+        "pp": ["learned"]
+      },
+      "meaning": {
+        "es": ["aprender"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "change",
+      "forms": {
+        "base": ["change"],
+        "past": ["changed"],
+        "pp": ["changed"]
+      },
+      "meaning": {
+        "es": ["cambiar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "understand",
+      "forms": {
+        "base": ["understand"],
+        "past": ["understood"],
+        "pp": ["understood"]
+      },
+      "meaning": {
+        "es": ["entender"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "watch",
+      "forms": {
+        "base": ["watch"],
+        "past": ["watched"],
+        "pp": ["watched"]
+      },
+      "meaning": {
+        "es": ["ver"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "follow",
+      "forms": {
+        "base": ["follow"],
+        "past": ["followed"],
+        "pp": ["followed"]
+      },
+      "meaning": {
+        "es": ["seguir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "stop",
+      "forms": {
+        "base": ["stop"],
+        "past": ["stopped"],
+        "pp": ["stopped"]
+      },
+      "meaning": {
+        "es": ["parar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "create",
+      "forms": {
+        "base": ["create"],
+        "past": ["created"],
+        "pp": ["created"]
+      },
+      "meaning": {
+        "es": ["crear"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "speak",
+      "forms": {
+        "base": ["speak"],
+        "past": ["spoke"],
+        "pp": ["spoken"]
+      },
+      "meaning": {
+        "es": ["hablar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "read",
+      "forms": {
+        "base": ["read"],
+        "past": ["read"],
+        "pp": ["read"]
+      },
+      "meaning": {
+        "es": ["leer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "add",
+      "forms": {
+        "base": ["add"],
+        "past": ["added"],
+        "pp": ["added"]
+      },
+      "meaning": {
+        "es": ["añadir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "spend",
+      "forms": {
+        "base": ["spend"],
+        "past": ["spent"],
+        "pp": ["spent"]
+      },
+      "meaning": {
+        "es": ["gastar", "pasar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "grow",
+      "forms": {
+        "base": ["grow"],
+        "past": ["grew"],
+        "pp": ["grown"]
+      },
+      "meaning": {
+        "es": ["crecer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "open",
+      "forms": {
+        "base": ["open"],
+        "past": ["opened"],
+        "pp": ["opened"]
+      },
+      "meaning": {
+        "es": ["abrir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "walk",
+      "forms": {
+        "base": ["walk"],
+        "past": ["walked"],
+        "pp": ["walked"]
+      },
+      "meaning": {
+        "es": ["caminar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "win",
+      "forms": {
+        "base": ["win"],
+        "past": ["won"],
+        "pp": ["won"]
+      },
+      "meaning": {
+        "es": ["ganar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "offer",
+      "forms": {
+        "base": ["offer"],
+        "past": ["offered"],
+        "pp": ["offered"]
+      },
+      "meaning": {
+        "es": ["ofrecer"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "remember",
+      "forms": {
+        "base": ["remember"],
+        "past": ["remembered"],
+        "pp": ["remembered"]
+      },
+      "meaning": {
+        "es": ["recordar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "love",
+      "forms": {
+        "base": ["love"],
+        "past": ["loved"],
+        "pp": ["loved"]
+      },
+      "meaning": {
+        "es": ["amar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "buy",
+      "forms": {
+        "base": ["buy"],
+        "past": ["bought"],
+        "pp": ["bought"]
+      },
+      "meaning": {
+        "es": ["comprar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "wait",
+      "forms": {
+        "base": ["wait"],
+        "past": ["waited"],
+        "pp": ["waited"]
+      },
+      "meaning": {
+        "es": ["esperar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "send",
+      "forms": {
+        "base": ["send"],
+        "past": ["sent"],
+        "pp": ["sent"]
+      },
+      "meaning": {
+        "es": ["enviar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "build",
+      "forms": {
+        "base": ["build"],
+        "past": ["built"],
+        "pp": ["built"]
+      },
+      "meaning": {
+        "es": ["construir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "stay",
+      "forms": {
+        "base": ["stay"],
+        "past": ["stayed"],
+        "pp": ["stayed"]
+      },
+      "meaning": {
+        "es": ["quedarse"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "fall",
+      "forms": {
+        "base": ["fall"],
+        "past": ["fell"],
+        "pp": ["fallen"]
+      },
+      "meaning": {
+        "es": ["caer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "cut",
+      "forms": {
+        "base": ["cut"],
+        "past": ["cut"],
+        "pp": ["cut"]
+      },
+      "meaning": {
+        "es": ["cortar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "reach",
+      "forms": {
+        "base": ["reach"],
+        "past": ["reached"],
+        "pp": ["reached"]
+      },
+      "meaning": {
+        "es": ["alcanzar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "sell",
+      "forms": {
+        "base": ["sell"],
+        "past": ["sold"],
+        "pp": ["sold"]
+      },
+      "meaning": {
+        "es": ["vender"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "decide",
+      "forms": {
+        "base": ["decide"],
+        "past": ["decided"],
+        "pp": ["decided"]
+      },
+      "meaning": {
+        "es": ["decidir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "return",
+      "forms": {
+        "base": ["return"],
+        "past": ["returned"],
+        "pp": ["returned"]
+      },
+      "meaning": {
+        "es": ["regresar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "explain",
+      "forms": {
+        "base": ["explain"],
+        "past": ["explained"],
+        "pp": ["explained"]
+      },
+      "meaning": {
+        "es": ["explicar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "hope",
+      "forms": {
+        "base": ["hope"],
+        "past": ["hoped"],
+        "pp": ["hoped"]
+      },
+      "meaning": {
+        "es": ["esperar", "desear"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "develop",
+      "forms": {
+        "base": ["develop"],
+        "past": ["developed"],
+        "pp": ["developed"]
+      },
+      "meaning": {
+        "es": ["desarrollar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "carry",
+      "forms": {
+        "base": ["carry"],
+        "past": ["carried"],
+        "pp": ["carried"]
+      },
+      "meaning": {
+        "es": ["cargar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "break",
+      "forms": {
+        "base": ["break"],
+        "past": ["broke"],
+        "pp": ["broken"]
+      },
+      "meaning": {
+        "es": ["romper"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "receive",
+      "forms": {
+        "base": ["receive"],
+        "past": ["received"],
+        "pp": ["received"]
+      },
+      "meaning": {
+        "es": ["recibir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "agree",
+      "forms": {
+        "base": ["agree"],
+        "past": ["agreed"],
+        "pp": ["agreed"]
+      },
+      "meaning": {
+        "es": ["acordar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "support",
+      "forms": {
+        "base": ["support"],
+        "past": ["supported"],
+        "pp": ["supported"]
+      },
+      "meaning": {
+        "es": ["apoyar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "hit",
+      "forms": {
+        "base": ["hit"],
+        "past": ["hit"],
+        "pp": ["hit"]
+      },
+      "meaning": {
+        "es": ["golpear"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "produce",
+      "forms": {
+        "base": ["produce"],
+        "past": ["produced"],
+        "pp": ["produced"]
+      },
+      "meaning": {
+        "es": ["producir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "eat",
+      "forms": {
+        "base": ["eat"],
+        "past": ["ate"],
+        "pp": ["eaten"]
+      },
+      "meaning": {
+        "es": ["comer"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "catch",
+      "forms": {
+        "base": ["catch"],
+        "past": ["caught"],
+        "pp": ["caught"]
+      },
+      "meaning": {
+        "es": ["atrapar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "draw",
+      "forms": {
+        "base": ["draw"],
+        "past": ["drew"],
+        "pp": ["drawn"]
+      },
+      "meaning": {
+        "es": ["dibujar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "choose",
+      "forms": {
+        "base": ["choose"],
+        "past": ["chose"],
+        "pp": ["chosen"]
+      },
+      "meaning": {
+        "es": ["elegir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "listen",
+      "forms": {
+        "base": ["listen"],
+        "past": ["listened"],
+        "pp": ["listened"]
+      },
+      "meaning": {
+        "es": ["escuchar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "teach",
+      "forms": {
+        "base": ["teach"],
+        "past": ["taught"],
+        "pp": ["taught"]
+      },
+      "meaning": {
+        "es": ["enseñar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "drive",
+      "forms": {
+        "base": ["drive"],
+        "past": ["drove"],
+        "pp": ["driven"]
+      },
+      "meaning": {
+        "es": ["conducir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "fight",
+      "forms": {
+        "base": ["fight"],
+        "past": ["fought"],
+        "pp": ["fought"]
+      },
+      "meaning": {
+        "es": ["pelear"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "throw",
+      "forms": {
+        "base": ["throw"],
+        "past": ["threw"],
+        "pp": ["thrown"]
+      },
+      "meaning": {
+        "es": ["lanzar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "wear",
+      "forms": {
+        "base": ["wear"],
+        "past": ["wore"],
+        "pp": ["worn"]
+      },
+      "meaning": {
+        "es": ["vestir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "drink",
+      "forms": {
+        "base": ["drink"],
+        "past": ["drank"],
+        "pp": ["drunk"]
+      },
+      "meaning": {
+        "es": ["beber"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "fly",
+      "forms": {
+        "base": ["fly"],
+        "past": ["flew"],
+        "pp": ["flown"]
+      },
+      "meaning": {
+        "es": ["volar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "forget",
+      "forms": {
+        "base": ["forget"],
+        "past": ["forgot"],
+        "pp": ["forgotten"]
+      },
+      "meaning": {
+        "es": ["olvidar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "forgive",
+      "forms": {
+        "base": ["forgive"],
+        "past": ["forgave"],
+        "pp": ["forgiven"]
+      },
+      "meaning": {
+        "es": ["perdonar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "hold",
+      "forms": {
+        "base": ["hold"],
+        "past": ["held"],
+        "pp": ["held"]
+      },
+      "meaning": {
+        "es": ["sostener"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "ride",
+      "forms": {
+        "base": ["ride"],
+        "past": ["rode"],
+        "pp": ["ridden"]
+      },
+      "meaning": {
+        "es": ["montar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "ring",
+      "forms": {
+        "base": ["ring"],
+        "past": ["rang"],
+        "pp": ["rung"]
+      },
+      "meaning": {
+        "es": ["sonar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "shake",
+      "forms": {
+        "base": ["shake"],
+        "past": ["shook"],
+        "pp": ["shaken"]
+      },
+      "meaning": {
+        "es": ["sacudir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "sing",
+      "forms": {
+        "base": ["sing"],
+        "past": ["sang"],
+        "pp": ["sung"]
+      },
+      "meaning": {
+        "es": ["cantar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "sleep",
+      "forms": {
+        "base": ["sleep"],
+        "past": ["slept"],
+        "pp": ["slept"]
+      },
+      "meaning": {
+        "es": ["dormir"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "steal",
+      "forms": {
+        "base": ["steal"],
+        "past": ["stole"],
+        "pp": ["stolen"]
+      },
+      "meaning": {
+        "es": ["robar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "swim",
+      "forms": {
+        "base": ["swim"],
+        "past": ["swam"],
+        "pp": ["swum"]
+      },
+      "meaning": {
+        "es": ["nadar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "wake",
+      "forms": {
+        "base": ["wake"],
+        "past": ["woke"],
+        "pp": ["woken"]
+      },
+      "meaning": {
+        "es": ["despertar"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "answer",
+      "forms": {
+        "base": ["answer"],
+        "past": ["answered"],
+        "pp": ["answered"]
+      },
+      "meaning": {
+        "es": ["responder"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "arrive",
+      "forms": {
+        "base": ["arrive"],
+        "past": ["arrived"],
+        "pp": ["arrived"]
+      },
+      "meaning": {
+        "es": ["llegar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "borrow",
+      "forms": {
+        "base": ["borrow"],
+        "past": ["borrowed"],
+        "pp": ["borrowed"]
+      },
+      "meaning": {
+        "es": ["pedir prestado"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "clean",
+      "forms": {
+        "base": ["clean"],
+        "past": ["cleaned"],
+        "pp": ["cleaned"]
+      },
+      "meaning": {
+        "es": ["limpiar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "close",
+      "forms": {
+        "base": ["close"],
+        "past": ["closed"],
+        "pp": ["closed"]
+      },
+      "meaning": {
+        "es": ["cerrar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "cook",
+      "forms": {
+        "base": ["cook"],
+        "past": ["cooked"],
+        "pp": ["cooked"]
+      },
+      "meaning": {
+        "es": ["cocinar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "dance",
+      "forms": {
+        "base": ["dance"],
+        "past": ["danced"],
+        "pp": ["danced"]
+      },
+      "meaning": {
+        "es": ["bailar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "enjoy",
+      "forms": {
+        "base": ["enjoy"],
+        "past": ["enjoyed"],
+        "pp": ["enjoyed"]
+      },
+      "meaning": {
+        "es": ["disfrutar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "enter",
+      "forms": {
+        "base": ["enter"],
+        "past": ["entered"],
+        "pp": ["entered"]
+      },
+      "meaning": {
+        "es": ["entrar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "finish",
+      "forms": {
+        "base": ["finish"],
+        "past": ["finished"],
+        "pp": ["finished"]
+      },
+      "meaning": {
+        "es": ["terminar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "invite",
+      "forms": {
+        "base": ["invite"],
+        "past": ["invited"],
+        "pp": ["invited"]
+      },
+      "meaning": {
+        "es": ["invitar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "jump",
+      "forms": {
+        "base": ["jump"],
+        "past": ["jumped"],
+        "pp": ["jumped"]
+      },
+      "meaning": {
+        "es": ["saltar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "laugh",
+      "forms": {
+        "base": ["laugh"],
+        "past": ["laughed"],
+        "pp": ["laughed"]
+      },
+      "meaning": {
+        "es": ["reír"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "need",
+      "forms": {
+        "base": ["need"],
+        "past": ["needed"],
+        "pp": ["needed"]
+      },
+      "meaning": {
+        "es": ["necesitar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "order",
+      "forms": {
+        "base": ["order"],
+        "past": ["ordered"],
+        "pp": ["ordered"]
+      },
+      "meaning": {
+        "es": ["ordenar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "paint",
+      "forms": {
+        "base": ["paint"],
+        "past": ["painted"],
+        "pp": ["painted"]
+      },
+      "meaning": {
+        "es": ["pintar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "plan",
+      "forms": {
+        "base": ["plan"],
+        "past": ["planned"],
+        "pp": ["planned"]
+      },
+      "meaning": {
+        "es": ["planear"]
+      },
+      "meta": {
+        "irregular": true,
+        "tags": []
+      }
+    },
+    {
+      "id": "prepare",
+      "forms": {
+        "base": ["prepare"],
+        "past": ["prepared"],
+        "pp": ["prepared"]
+      },
+      "meaning": {
+        "es": ["preparar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "promise",
+      "forms": {
+        "base": ["promise"],
+        "past": ["promised"],
+        "pp": ["promised"]
+      },
+      "meaning": {
+        "es": ["prometer"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "push",
+      "forms": {
+        "base": ["push"],
+        "past": ["pushed"],
+        "pp": ["pushed"]
+      },
+      "meaning": {
+        "es": ["empujar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "repair",
+      "forms": {
+        "base": ["repair"],
+        "past": ["repaired"],
+        "pp": ["repaired"]
+      },
+      "meaning": {
+        "es": ["reparar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "repeat",
+      "forms": {
+        "base": ["repeat"],
+        "past": ["repeated"],
+        "pp": ["repeated"]
+      },
+      "meaning": {
+        "es": ["repetir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "save",
+      "forms": {
+        "base": ["save"],
+        "past": ["saved"],
+        "pp": ["saved"]
+      },
+      "meaning": {
+        "es": ["guardar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "search",
+      "forms": {
+        "base": ["search"],
+        "past": ["searched"],
+        "pp": ["searched"]
+      },
+      "meaning": {
+        "es": ["buscar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "share",
+      "forms": {
+        "base": ["share"],
+        "past": ["shared"],
+        "pp": ["shared"]
+      },
+      "meaning": {
+        "es": ["compartir"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "smile",
+      "forms": {
+        "base": ["smile"],
+        "past": ["smiled"],
+        "pp": ["smiled"]
+      },
+      "meaning": {
+        "es": ["sonreír"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "travel",
+      "forms": {
+        "base": ["travel"],
+        "past": ["traveled"],
+        "pp": ["traveled"]
+      },
+      "meaning": {
+        "es": ["viajar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "visit",
+      "forms": {
+        "base": ["visit"],
+        "past": ["visited"],
+        "pp": ["visited"]
+      },
+      "meaning": {
+        "es": ["visitar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "wash",
+      "forms": {
+        "base": ["wash"],
+        "past": ["washed"],
+        "pp": ["washed"]
+      },
+      "meaning": {
+        "es": ["lavar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "wish",
+      "forms": {
+        "base": ["wish"],
+        "past": ["wished"],
+        "pp": ["wished"]
+      },
+      "meaning": {
+        "es": ["desear"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "worry",
+      "forms": {
+        "base": ["worry"],
+        "past": ["worried"],
+        "pp": ["worried"]
+      },
+      "meaning": {
+        "es": ["preocuparse"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "accept",
+      "forms": {
+        "base": ["accept"],
+        "past": ["accepted"],
+        "pp": ["accepted"]
+      },
+      "meaning": {
+        "es": ["aceptar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "achieve",
+      "forms": {
+        "base": ["achieve"],
+        "past": ["achieved"],
+        "pp": ["achieved"]
+      },
+      "meaning": {
+        "es": ["lograr"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "act",
+      "forms": {
+        "base": ["act"],
+        "past": ["acted"],
+        "pp": ["acted"]
+      },
+      "meaning": {
+        "es": ["actuar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "admire",
+      "forms": {
+        "base": ["admire"],
+        "past": ["admired"],
+        "pp": ["admired"]
+      },
+      "meaning": {
+        "es": ["admirar"]
+      },
+      "meta": {
+        "irregular": false,
+        "tags": []
+      }
+    },
+    {
+      "id": "arise",
+      "forms": { "base": ["arise"], "past": ["arose"], "pp": ["arisen"] },
+      "meaning": { "es": ["surgir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "awake",
+      "forms": { "base": ["awake"], "past": ["awoke"], "pp": ["awoken"] },
+      "meaning": { "es": ["despertar(se)"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "beat",
+      "forms": { "base": ["beat"], "past": ["beat"], "pp": ["beaten"] },
+      "meaning": { "es": ["golpear", "vencer"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "become",
+      "forms": { "base": ["become"], "past": ["became"], "pp": ["become"] },
+      "meaning": { "es": ["llegar a ser", "convertirse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "bend",
+      "forms": { "base": ["bend"], "past": ["bent"], "pp": ["bent"] },
+      "meaning": { "es": ["doblar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "bet",
+      "forms": { "base": ["bet"], "past": ["bet"], "pp": ["bet"] },
+      "meaning": { "es": ["apostar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "bite",
+      "forms": { "base": ["bite"], "past": ["bit"], "pp": ["bitten"] },
+      "meaning": { "es": ["morder"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "bleed",
+      "forms": { "base": ["bleed"], "past": ["bled"], "pp": ["bled"] },
+      "meaning": { "es": ["sangrar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "blow",
+      "forms": { "base": ["blow"], "past": ["blew"], "pp": ["blown"] },
+      "meaning": { "es": ["soplar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "burn",
+      "forms": {
+        "base": ["burn"],
+        "past": ["burnt", "burned"],
+        "pp": ["burnt", "burned"]
+      },
+      "meaning": { "es": ["quemar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "burst",
+      "forms": { "base": ["burst"], "past": ["burst"], "pp": ["burst"] },
+      "meaning": { "es": ["estallar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "cost",
+      "forms": { "base": ["cost"], "past": ["cost"], "pp": ["cost"] },
+      "meaning": { "es": ["costar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "creep",
+      "forms": { "base": ["creep"], "past": ["crept"], "pp": ["crept"] },
+      "meaning": { "es": ["arrastrarse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "deal",
+      "forms": { "base": ["deal"], "past": ["dealt"], "pp": ["dealt"] },
+      "meaning": { "es": ["tratar", "negociar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "dig",
+      "forms": { "base": ["dig"], "past": ["dug"], "pp": ["dug"] },
+      "meaning": { "es": ["cavar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "dream",
+      "forms": {
+        "base": ["dream"],
+        "past": ["dreamt", "dreamed"],
+        "pp": ["dreamt", "dreamed"]
+      },
+      "meaning": { "es": ["soñar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "feed",
+      "forms": { "base": ["feed"], "past": ["fed"], "pp": ["fed"] },
+      "meaning": { "es": ["alimentar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "fit",
+      "forms": { "base": ["fit"], "past": ["fit"], "pp": ["fit"] },
+      "meaning": { "es": ["encajar", "ajustar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "forbid",
+      "forms": { "base": ["forbid"], "past": ["forbade"], "pp": ["forbidden"] },
+      "meaning": { "es": ["prohibir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "forecast",
+      "forms": {
+        "base": ["forecast"],
+        "past": ["forecast"],
+        "pp": ["forecast"]
+      },
+      "meaning": { "es": ["pronosticar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "freeze",
+      "forms": { "base": ["freeze"], "past": ["froze"], "pp": ["frozen"] },
+      "meaning": { "es": ["congelar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "hang",
+      "forms": { "base": ["hang"], "past": ["hung"], "pp": ["hung"] },
+      "meaning": { "es": ["colgar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "hide",
+      "forms": { "base": ["hide"], "past": ["hid"], "pp": ["hidden"] },
+      "meaning": { "es": ["esconder"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "kneel",
+      "forms": { "base": ["kneel"], "past": ["knelt"], "pp": ["knelt"] },
+      "meaning": { "es": ["arrodillarse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "knit",
+      "forms": {
+        "base": ["knit"],
+        "past": ["knit", "knitted"],
+        "pp": ["knit", "knitted"]
+      },
+      "meaning": { "es": ["tejer"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "lay",
+      "forms": { "base": ["lay"], "past": ["laid"], "pp": ["laid"] },
+      "meaning": { "es": ["poner", "extender"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "lead",
+      "forms": { "base": ["lead"], "past": ["led"], "pp": ["led"] },
+      "meaning": { "es": ["guiar", "liderar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "lean",
+      "forms": {
+        "base": ["lean"],
+        "past": ["leant", "leaned"],
+        "pp": ["leant", "leaned"]
+      },
+      "meaning": { "es": ["apoyarse", "inclinarse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "leap",
+      "forms": {
+        "base": ["leap"],
+        "past": ["leapt", "leaped"],
+        "pp": ["leapt", "leaped"]
+      },
+      "meaning": { "es": ["saltar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "lend",
+      "forms": { "base": ["lend"], "past": ["lent"], "pp": ["lent"] },
+      "meaning": { "es": ["prestar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "let",
+      "forms": { "base": ["let"], "past": ["let"], "pp": ["let"] },
+      "meaning": { "es": ["dejar", "permitir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "light",
+      "forms": {
+        "base": ["light"],
+        "past": ["lit", "lighted"],
+        "pp": ["lit", "lighted"]
+      },
+      "meaning": { "es": ["encender"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "mean",
+      "forms": { "base": ["mean"], "past": ["meant"], "pp": ["meant"] },
+      "meaning": { "es": ["significar", "querer decir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "mistake",
+      "forms": { "base": ["mistake"], "past": ["mistook"], "pp": ["mistaken"] },
+      "meaning": { "es": ["equivocarse", "confundir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "overcome",
+      "forms": {
+        "base": ["overcome"],
+        "past": ["overcame"],
+        "pp": ["overcome"]
+      },
+      "meaning": { "es": ["superar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "quit",
+      "forms": { "base": ["quit"], "past": ["quit"], "pp": ["quit"] },
+      "meaning": { "es": ["abandonar", "dejar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "rise",
+      "forms": { "base": ["rise"], "past": ["rose"], "pp": ["risen"] },
+      "meaning": { "es": ["levantarse", "subir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "seek",
+      "forms": { "base": ["seek"], "past": ["sought"], "pp": ["sought"] },
+      "meaning": { "es": ["buscar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "set",
+      "forms": { "base": ["set"], "past": ["set"], "pp": ["set"] },
+      "meaning": { "es": ["establecer", "poner"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "sew",
+      "forms": { "base": ["sew"], "past": ["sewed"], "pp": ["sewn", "sewed"] },
+      "meaning": { "es": ["coser"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "shave",
+      "forms": {
+        "base": ["shave"],
+        "past": ["shaved"],
+        "pp": ["shaven", "shaved"]
+      },
+      "meaning": { "es": ["afeitarse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "shine",
+      "forms": { "base": ["shine"], "past": ["shone"], "pp": ["shone"] },
+      "meaning": { "es": ["brillar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "shoot",
+      "forms": { "base": ["shoot"], "past": ["shot"], "pp": ["shot"] },
+      "meaning": { "es": ["disparar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "shrink",
+      "forms": { "base": ["shrink"], "past": ["shrank"], "pp": ["shrunk"] },
+      "meaning": { "es": ["encoger"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "shut",
+      "forms": { "base": ["shut"], "past": ["shut"], "pp": ["shut"] },
+      "meaning": { "es": ["cerrar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "sink",
+      "forms": { "base": ["sink"], "past": ["sank"], "pp": ["sunk"] },
+      "meaning": { "es": ["hundir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "slide",
+      "forms": { "base": ["slide"], "past": ["slid"], "pp": ["slid"] },
+      "meaning": { "es": ["deslizar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "smell",
+      "forms": {
+        "base": ["smell"],
+        "past": ["smelt", "smelled"],
+        "pp": ["smelt", "smelled"]
+      },
+      "meaning": { "es": ["oler"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spell",
+      "forms": {
+        "base": ["spell"],
+        "past": ["spelt", "spelled"],
+        "pp": ["spelt", "spelled"]
+      },
+      "meaning": { "es": ["deletrear"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spill",
+      "forms": {
+        "base": ["spill"],
+        "past": ["spilt", "spilled"],
+        "pp": ["spilt", "spilled"]
+      },
+      "meaning": { "es": ["derramar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spin",
+      "forms": { "base": ["spin"], "past": ["spun"], "pp": ["spun"] },
+      "meaning": { "es": ["girar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spit",
+      "forms": { "base": ["spit"], "past": ["spat"], "pp": ["spat"] },
+      "meaning": { "es": ["escupir"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "split",
+      "forms": { "base": ["split"], "past": ["split"], "pp": ["split"] },
+      "meaning": { "es": ["dividir", "separar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spoil",
+      "forms": {
+        "base": ["spoil"],
+        "past": ["spoilt", "spoiled"],
+        "pp": ["spoilt", "spoiled"]
+      },
+      "meaning": { "es": ["estropear", "mimar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spread",
+      "forms": { "base": ["spread"], "past": ["spread"], "pp": ["spread"] },
+      "meaning": { "es": ["extender"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "spring",
+      "forms": { "base": ["spring"], "past": ["sprang"], "pp": ["sprung"] },
+      "meaning": { "es": ["brotar", "saltar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "stick",
+      "forms": { "base": ["stick"], "past": ["stuck"], "pp": ["stuck"] },
+      "meaning": { "es": ["pegar", "adherirse"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "sting",
+      "forms": { "base": ["sting"], "past": ["stung"], "pp": ["stung"] },
+      "meaning": { "es": ["picar (insecto)"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "strike",
+      "forms": { "base": ["strike"], "past": ["struck"], "pp": ["struck"] },
+      "meaning": { "es": ["golpear"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "swear",
+      "forms": { "base": ["swear"], "past": ["swore"], "pp": ["sworn"] },
+      "meaning": { "es": ["jurar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "sweep",
+      "forms": { "base": ["sweep"], "past": ["swept"], "pp": ["swept"] },
+      "meaning": { "es": ["barrer"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "swing",
+      "forms": { "base": ["swing"], "past": ["swung"], "pp": ["swung"] },
+      "meaning": { "es": ["columpiar", "oscilar"] },
+      "meta": { "irregular": true, "tags": [] }
+    },
+    {
+      "id": "absorb",
+      "forms": { "base": ["absorb"], "past": ["absorbed"], "pp": ["absorbed"] },
+      "meaning": { "es": ["absorber"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "adjust",
+      "forms": { "base": ["adjust"], "past": ["adjusted"], "pp": ["adjusted"] },
+      "meaning": { "es": ["ajustar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "adopt",
+      "forms": { "base": ["adopt"], "past": ["adopted"], "pp": ["adopted"] },
+      "meaning": { "es": ["adoptar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "advise",
+      "forms": { "base": ["advise"], "past": ["advised"], "pp": ["advised"] },
+      "meaning": { "es": ["aconsejar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "afford",
+      "forms": { "base": ["afford"], "past": ["afforded"], "pp": ["afforded"] },
+      "meaning": { "es": ["permitirse (económicamente)"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "agree",
+      "forms": { "base": ["agree"], "past": ["agreed"], "pp": ["agreed"] },
+      "meaning": { "es": ["estar de acuerdo"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "allow",
+      "forms": { "base": ["allow"], "past": ["allowed"], "pp": ["allowed"] },
+      "meaning": { "es": ["permitir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "analyze",
+      "forms": {
+        "base": ["analyze"],
+        "past": ["analyzed"],
+        "pp": ["analyzed"]
+      },
+      "meaning": { "es": ["analizar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "announce",
+      "forms": {
+        "base": ["announce"],
+        "past": ["announced"],
+        "pp": ["announced"]
+      },
+      "meaning": { "es": ["anunciar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "appear",
+      "forms": { "base": ["appear"], "past": ["appeared"], "pp": ["appeared"] },
+      "meaning": { "es": ["aparecer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "apply",
+      "forms": { "base": ["apply"], "past": ["applied"], "pp": ["applied"] },
+      "meaning": { "es": ["aplicar", "solicitar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "argue",
+      "forms": { "base": ["argue"], "past": ["argued"], "pp": ["argued"] },
+      "meaning": { "es": ["discutir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "arrange",
+      "forms": {
+        "base": ["arrange"],
+        "past": ["arranged"],
+        "pp": ["arranged"]
+      },
+      "meaning": { "es": ["organizar", "arreglar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "arrest",
+      "forms": { "base": ["arrest"], "past": ["arrested"], "pp": ["arrested"] },
+      "meaning": { "es": ["arrestar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "attach",
+      "forms": { "base": ["attach"], "past": ["attached"], "pp": ["attached"] },
+      "meaning": { "es": ["adjuntar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "attack",
+      "forms": { "base": ["attack"], "past": ["attacked"], "pp": ["attacked"] },
+      "meaning": { "es": ["atacar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "attempt",
+      "forms": {
+        "base": ["attempt"],
+        "past": ["attempted"],
+        "pp": ["attempted"]
+      },
+      "meaning": { "es": ["intentar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "avoid",
+      "forms": { "base": ["avoid"], "past": ["avoided"], "pp": ["avoided"] },
+      "meaning": { "es": ["evitar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "bake",
+      "forms": { "base": ["bake"], "past": ["baked"], "pp": ["baked"] },
+      "meaning": { "es": ["hornear"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "behave",
+      "forms": { "base": ["behave"], "past": ["behaved"], "pp": ["behaved"] },
+      "meaning": { "es": ["comportarse"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "believe",
+      "forms": {
+        "base": ["believe"],
+        "past": ["believed"],
+        "pp": ["believed"]
+      },
+      "meaning": { "es": ["creer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "belong",
+      "forms": { "base": ["belong"], "past": ["belonged"], "pp": ["belonged"] },
+      "meaning": { "es": ["pertenecer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "blame",
+      "forms": { "base": ["blame"], "past": ["blamed"], "pp": ["blamed"] },
+      "meaning": { "es": ["culpar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "breathe",
+      "forms": {
+        "base": ["breathe"],
+        "past": ["breathed"],
+        "pp": ["breathed"]
+      },
+      "meaning": { "es": ["respirar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "brush",
+      "forms": { "base": ["brush"], "past": ["brushed"], "pp": ["brushed"] },
+      "meaning": { "es": ["cepillar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "cancel",
+      "forms": {
+        "base": ["cancel"],
+        "past": ["cancelled"],
+        "pp": ["cancelled"]
+      },
+      "meaning": { "es": ["cancelar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "cause",
+      "forms": { "base": ["cause"], "past": ["caused"], "pp": ["caused"] },
+      "meaning": { "es": ["causar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "celebrate",
+      "forms": {
+        "base": ["celebrate"],
+        "past": ["celebrated"],
+        "pp": ["celebrated"]
+      },
+      "meaning": { "es": ["celebrar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "check",
+      "forms": { "base": ["check"], "past": ["checked"], "pp": ["checked"] },
+      "meaning": { "es": ["revisar", "comprobar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "claim",
+      "forms": { "base": ["claim"], "past": ["claimed"], "pp": ["claimed"] },
+      "meaning": { "es": ["reclamar", "afirmar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "collect",
+      "forms": {
+        "base": ["collect"],
+        "past": ["collected"],
+        "pp": ["collected"]
+      },
+      "meaning": { "es": ["recoger", "coleccionar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "complain",
+      "forms": {
+        "base": ["complain"],
+        "past": ["complained"],
+        "pp": ["complained"]
+      },
+      "meaning": { "es": ["quejarse"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "complete",
+      "forms": {
+        "base": ["complete"],
+        "past": ["completed"],
+        "pp": ["completed"]
+      },
+      "meaning": { "es": ["completar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "confirm",
+      "forms": {
+        "base": ["confirm"],
+        "past": ["confirmed"],
+        "pp": ["confirmed"]
+      },
+      "meaning": { "es": ["confirmar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "connect",
+      "forms": {
+        "base": ["connect"],
+        "past": ["connected"],
+        "pp": ["connected"]
+      },
+      "meaning": { "es": ["conectar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "consider",
+      "forms": {
+        "base": ["consider"],
+        "past": ["considered"],
+        "pp": ["considered"]
+      },
+      "meaning": { "es": ["considerar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "contain",
+      "forms": {
+        "base": ["contain"],
+        "past": ["contained"],
+        "pp": ["contained"]
+      },
+      "meaning": { "es": ["contener"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "continue",
+      "forms": {
+        "base": ["continue"],
+        "past": ["continued"],
+        "pp": ["continued"]
+      },
+      "meaning": { "es": ["continuar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "count",
+      "forms": { "base": ["count"], "past": ["counted"], "pp": ["counted"] },
+      "meaning": { "es": ["contar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "cover",
+      "forms": { "base": ["cover"], "past": ["covered"], "pp": ["covered"] },
+      "meaning": { "es": ["cubrir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "damage",
+      "forms": { "base": ["damage"], "past": ["damaged"], "pp": ["damaged"] },
+      "meaning": { "es": ["dañar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "deliver",
+      "forms": {
+        "base": ["deliver"],
+        "past": ["delivered"],
+        "pp": ["delivered"]
+      },
+      "meaning": { "es": ["entregar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "depend",
+      "forms": { "base": ["depend"], "past": ["depended"], "pp": ["depended"] },
+      "meaning": { "es": ["depender"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "describe",
+      "forms": {
+        "base": ["describe"],
+        "past": ["described"],
+        "pp": ["described"]
+      },
+      "meaning": { "es": ["describir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "design",
+      "forms": { "base": ["design"], "past": ["designed"], "pp": ["designed"] },
+      "meaning": { "es": ["diseñar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "destroy",
+      "forms": {
+        "base": ["destroy"],
+        "past": ["destroyed"],
+        "pp": ["destroyed"]
+      },
+      "meaning": { "es": ["destruir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "discover",
+      "forms": {
+        "base": ["discover"],
+        "past": ["discovered"],
+        "pp": ["discovered"]
+      },
+      "meaning": { "es": ["descubrir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "discuss",
+      "forms": {
+        "base": ["discuss"],
+        "past": ["discussed"],
+        "pp": ["discussed"]
+      },
+      "meaning": { "es": ["discutir", "debatir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "divide",
+      "forms": { "base": ["divide"], "past": ["divided"], "pp": ["divided"] },
+      "meaning": { "es": ["dividir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "doubt",
+      "forms": { "base": ["doubt"], "past": ["doubted"], "pp": ["doubted"] },
+      "meaning": { "es": ["dudar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "drop",
+      "forms": { "base": ["drop"], "past": ["dropped"], "pp": ["dropped"] },
+      "meaning": { "es": ["soltar", "caer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "earn",
+      "forms": { "base": ["earn"], "past": ["earned"], "pp": ["earned"] },
+      "meaning": { "es": ["ganar (dinero/mérito)"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "encourage",
+      "forms": {
+        "base": ["encourage"],
+        "past": ["encouraged"],
+        "pp": ["encouraged"]
+      },
+      "meaning": { "es": ["animar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "examine",
+      "forms": {
+        "base": ["examine"],
+        "past": ["examined"],
+        "pp": ["examined"]
+      },
+      "meaning": { "es": ["examinar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "exercise",
+      "forms": {
+        "base": ["exercise"],
+        "past": ["exercised"],
+        "pp": ["exercised"]
+      },
+      "meaning": { "es": ["ejercitar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "expect",
+      "forms": { "base": ["expect"], "past": ["expected"], "pp": ["expected"] },
+      "meaning": { "es": ["esperar (probabilidad)"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "experience",
+      "forms": {
+        "base": ["experience"],
+        "past": ["experienced"],
+        "pp": ["experienced"]
+      },
+      "meaning": { "es": ["experimentar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "face",
+      "forms": { "base": ["face"], "past": ["faced"], "pp": ["faced"] },
+      "meaning": { "es": ["enfrentar", "dar la cara"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "fail",
+      "forms": { "base": ["fail"], "past": ["failed"], "pp": ["failed"] },
+      "meaning": { "es": ["fallar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "fear",
+      "forms": { "base": ["fear"], "past": ["feared"], "pp": ["feared"] },
+      "meaning": { "es": ["temer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "fix",
+      "forms": { "base": ["fix"], "past": ["fixed"], "pp": ["fixed"] },
+      "meaning": { "es": ["arreglar", "fijar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "guess",
+      "forms": { "base": ["guess"], "past": ["guessed"], "pp": ["guessed"] },
+      "meaning": { "es": ["adivinar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "handle",
+      "forms": { "base": ["handle"], "past": ["handled"], "pp": ["handled"] },
+      "meaning": { "es": ["manejar", "gestionar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "happen",
+      "forms": { "base": ["happen"], "past": ["happened"], "pp": ["happened"] },
+      "meaning": { "es": ["suceder", "pasar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "hate",
+      "forms": { "base": ["hate"], "past": ["hated"], "pp": ["hated"] },
+      "meaning": { "es": ["odiar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "imagine",
+      "forms": {
+        "base": ["imagine"],
+        "past": ["imagined"],
+        "pp": ["imagined"]
+      },
+      "meaning": { "es": ["imaginar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "improve",
+      "forms": {
+        "base": ["improve"],
+        "past": ["improved"],
+        "pp": ["improved"]
+      },
+      "meaning": { "es": ["mejorar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "include",
+      "forms": {
+        "base": ["include"],
+        "past": ["included"],
+        "pp": ["included"]
+      },
+      "meaning": { "es": ["incluir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "increase",
+      "forms": {
+        "base": ["increase"],
+        "past": ["increased"],
+        "pp": ["increased"]
+      },
+      "meaning": { "es": ["aumentar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "inform",
+      "forms": { "base": ["inform"], "past": ["informed"], "pp": ["informed"] },
+      "meaning": { "es": ["informar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "introduce",
+      "forms": {
+        "base": ["introduce"],
+        "past": ["introduced"],
+        "pp": ["introduced"]
+      },
+      "meaning": { "es": ["introducir", "presentar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "invest",
+      "forms": { "base": ["invest"], "past": ["invested"], "pp": ["invested"] },
+      "meaning": { "es": ["invertir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "join",
+      "forms": { "base": ["join"], "past": ["joined"], "pp": ["joined"] },
+      "meaning": { "es": ["unirse"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "judge",
+      "forms": { "base": ["judge"], "past": ["judged"], "pp": ["judged"] },
+      "meaning": { "es": ["juzgar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "kill",
+      "forms": { "base": ["kill"], "past": ["killed"], "pp": ["killed"] },
+      "meaning": { "es": ["matar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "kiss",
+      "forms": { "base": ["kiss"], "past": ["kissed"], "pp": ["kissed"] },
+      "meaning": { "es": ["besar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "knock",
+      "forms": { "base": ["knock"], "past": ["knocked"], "pp": ["knocked"] },
+      "meaning": { "es": ["tocar (puerta)"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "last",
+      "forms": { "base": ["last"], "past": ["lasted"], "pp": ["lasted"] },
+      "meaning": { "es": ["durar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "lie",
+      "forms": { "base": ["lie"], "past": ["lied"], "pp": ["lied"] },
+      "meaning": { "es": ["mentir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "lock",
+      "forms": { "base": ["lock"], "past": ["locked"], "pp": ["locked"] },
+      "meaning": { "es": ["cerrar con llave"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "manage",
+      "forms": { "base": ["manage"], "past": ["managed"], "pp": ["managed"] },
+      "meaning": { "es": ["gestionar", "lograr"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "mark",
+      "forms": { "base": ["mark"], "past": ["marked"], "pp": ["marked"] },
+      "meaning": { "es": ["marcar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "marry",
+      "forms": { "base": ["marry"], "past": ["married"], "pp": ["married"] },
+      "meaning": { "es": ["casarse"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "measure",
+      "forms": {
+        "base": ["measure"],
+        "past": ["measured"],
+        "pp": ["measured"]
+      },
+      "meaning": { "es": ["medir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "mention",
+      "forms": {
+        "base": ["mention"],
+        "past": ["mentioned"],
+        "pp": ["mentioned"]
+      },
+      "meaning": { "es": ["mencionar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "miss",
+      "forms": { "base": ["miss"], "past": ["missed"], "pp": ["missed"] },
+      "meaning": { "es": ["perder", "extrañar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "notice",
+      "forms": { "base": ["notice"], "past": ["noticed"], "pp": ["noticed"] },
+      "meaning": { "es": ["notar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "order",
+      "forms": { "base": ["order"], "past": ["ordered"], "pp": ["ordered"] },
+      "meaning": { "es": ["ordenar", "pedir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "own",
+      "forms": { "base": ["own"], "past": ["owned"], "pp": ["owned"] },
+      "meaning": { "es": ["poseer"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "pack",
+      "forms": { "base": ["pack"], "past": ["packed"], "pp": ["packed"] },
+      "meaning": { "es": ["empacar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "paint",
+      "forms": { "base": ["paint"], "past": ["painted"], "pp": ["painted"] },
+      "meaning": { "es": ["pintar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "pass",
+      "forms": { "base": ["pass"], "past": ["passed"], "pp": ["passed"] },
+      "meaning": { "es": ["pasar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "perform",
+      "forms": {
+        "base": ["perform"],
+        "past": ["performed"],
+        "pp": ["performed"]
+      },
+      "meaning": { "es": ["realizar", "actuar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "phone",
+      "forms": { "base": ["phone"], "past": ["phoned"], "pp": ["phoned"] },
+      "meaning": { "es": ["llamar por teléfono"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "plan",
+      "forms": { "base": ["plan"], "past": ["planned"], "pp": ["planned"] },
+      "meaning": { "es": ["planear"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "point",
+      "forms": { "base": ["point"], "past": ["pointed"], "pp": ["pointed"] },
+      "meaning": { "es": ["señalar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "prefer",
+      "forms": {
+        "base": ["prefer"],
+        "past": ["preferred"],
+        "pp": ["preferred"]
+      },
+      "meaning": { "es": ["preferir"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "prepare",
+      "forms": {
+        "base": ["prepare"],
+        "past": ["prepared"],
+        "pp": ["prepared"]
+      },
+      "meaning": { "es": ["preparar"] },
+      "meta": { "irregular": false, "tags": [] }
+    },
+    {
+      "id": "prevent",
+      "forms": {
+        "base": ["prevent"],
+        "past": ["prevented"],
+        "pp": ["prevented"]
+      },
+      "meaning": { "es": ["prevenir"] },
+      "meta": { "irregular": false, "tags": [] }
+    }
+  ]
+}

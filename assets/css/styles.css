@@ -1,0 +1,529 @@
+/* ---------- Design tokens ---------- */
+:root {
+    /* Colores (guía educativa) */
+    --primary-600: #2563EB;
+    --primary-700: #1D4ED8;
+    --primary-100: #DBEAFE;
+    --primary-50: #EFF6FF;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --text-2: #475569;
+    --border: #E2E8F0;
+    --success: #22C55E;
+    --success-bg: #DCFCE7;
+    --error: #EF4444;
+    --error-bg: #FEE2E2;
+    --hint: #FEF3C7;
+
+    /* Radius / Shadow */
+    --radius-lg: 16px;
+    --radius-md: 14px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-focus: 0 0 0 3px var(--primary-50);
+
+    /* Spacing (8pt grid) */
+    --s-1: 8px;
+    --s-1_5: 12px;
+    --s-2: 16px;
+    --s-3: 24px;
+    --s-4: 32px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 var(--s-2);
+    border-bottom: 1px solid var(--border);
+}
+
+.app-header-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.app-header-login {
+    padding: var(--s-1) var(--s-1_5);
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.app-header-login:hover {
+    background: var(--primary-50);
+}
+
+.app-header-login:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.app-main {
+    flex: 1;
+    overflow: auto;
+    padding: 0 var(--s-2);
+}
+
+/* ---------- Componentes reutilizables ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.input {
+    height: 52px;
+    padding: 14px var(--s-2);
+    font-size: 18px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+    color: var(--text-2);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary-600);
+    box-shadow: var(--shadow-focus);
+}
+
+.input.is-success {
+    border-color: var(--success);
+    background: var(--success-bg);
+}
+
+.input.is-error {
+    border-color: var(--error);
+    background: var(--error-bg);
+}
+
+.input.is-hint {
+    background: var(--hint);
+}
+
+.input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    padding: 0 var(--s-3);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: var(--primary-600);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-700);
+}
+
+.btn-primary:active:not(:disabled) {
+    background: var(--primary-700);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+    background: var(--text-2);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.btn-secondary {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    padding: 0 var(--s-3);
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--primary-50);
+    border-color: var(--primary-100);
+}
+
+.btn-secondary:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-link {
+    padding: var(--s-1) var(--s-1_5);
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-link:hover:not(:disabled) {
+    color: var(--primary-600);
+    text-decoration: underline;
+}
+
+.btn-link:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.btn-link:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.progress-track {
+    height: 6px;
+    background: var(--primary-100);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-600);
+    border-radius: 999px;
+    transition: width 200ms ease;
+}
+
+/* Feedback / estados de mensaje */
+.feedback-success {
+    color: var(--success);
+    font-weight: 500;
+}
+
+.feedback-error {
+    color: var(--error);
+    font-weight: 500;
+}
+
+/* ---------- Practice feature ---------- */
+.practice {
+    padding: var(--s-2) 0;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.practice-header {
+    margin-bottom: var(--s-1_5);
+}
+
+.practice-title {
+    margin: 0 0 2px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.practice-set-info {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+.practice-progress-outer {
+    display: flex;
+    align-items: center;
+    gap: var(--s-1);
+    margin-bottom: var(--s-2);
+}
+
+.practice-progress-wrap.progress-track {
+    flex: 1;
+}
+
+.practice-progress-bar.progress-fill {
+    /* hereda de .progress-fill */
+}
+
+.practice-progress-text {
+    font-size: 13px;
+    color: var(--text-2);
+    min-width: 2rem;
+}
+
+.practice-progress-text:empty {
+    display: none;
+}
+
+.practice-card.card {
+    margin-bottom: var(--s-2);
+}
+
+.practice-card-label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+}
+
+.verb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-1_5);
+}
+
+.practice-card-value {
+    margin: 0;
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.practice-meaning-toggle.btn-link {
+    flex-shrink: 0;
+}
+
+.practice-meaning-container {
+    margin-top: var(--s-1);
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+.practice-input.input.hint-active,
+.practice-input.input.hint-active:focus {
+    background: var(--success-bg);
+    border-color: var(--success);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.practice-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1_5);
+    margin-bottom: var(--s-1_5);
+}
+
+.practice-label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+}
+
+.practice-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+    margin-bottom: var(--s-1);
+}
+
+.practice-feedback {
+    min-height: 2rem;
+    padding: var(--s-1) 0;
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+/* Pantalla final del set */
+.practice-summary {
+    padding: var(--s-3);
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.practice-summary h2 {
+    margin: 0 0 var(--s-2);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.practice-summary-stats {
+    margin-bottom: var(--s-3);
+    font-size: 1rem;
+    color: var(--text-2);
+}
+
+.practice-summary-stats p {
+    margin: var(--s-1) 0;
+}
+
+.practice-summary .btn-primary {
+    min-height: 52px;
+}
+
+/* ---------- Login modal ---------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-2);
+    background: rgba(15, 23, 42, 0.4);
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-box {
+    width: 92%;
+    max-width: 420px;
+    padding: var(--s-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm), 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+    margin: 0 0 var(--s-1);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.modal-description {
+    margin: 0 0 var(--s-2);
+    font-size: 0.9375rem;
+    color: var(--text-2);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
+.modal-label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+}
+
+.modal-input {
+    height: 52px;
+    padding: 14px var(--s-2);
+    font-size: 18px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: var(--primary-600);
+    box-shadow: var(--shadow-focus);
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+    margin-top: var(--s-1);
+}
+
+.modal-btn {
+    min-height: 52px;
+    padding: 0 var(--s-3);
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: none;
+}
+
+.modal-btn:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.modal-btn-primary {
+    background: var(--primary-600);
+    color: #fff;
+    font-weight: 600;
+}
+
+.modal-btn-primary:hover {
+    background: var(--primary-700);
+}
+
+.modal-btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.modal-btn-secondary:hover {
+    background: var(--primary-50);
+    border-color: var(--primary-100);
+}
