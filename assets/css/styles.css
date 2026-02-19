@@ -64,7 +64,7 @@ body {
     flex-shrink: 0;
     background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
     color: #fff;
-    padding: 32px 20px 44px;
+    padding: 22px 20px 10px;
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
     box-shadow: 0 10px 30px rgba(29, 78, 216, 0.2);
@@ -189,6 +189,8 @@ body {
 
 .input {
     height: 52px;
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 14px var(--s-2);
     font-size: 18px;
     font-family: inherit;
@@ -357,7 +359,7 @@ body {
 }
 
 .practice-card.card {
-    margin-bottom: var(--s-3);
+    margin-bottom: var(--s-2);
 }
 
 .practice-card-label {
@@ -402,15 +404,21 @@ body {
 .practice-inputs {
     display: flex;
     flex-direction: column;
-    gap: var(--s-2);
+    gap: 0;
     margin-bottom: var(--s-3);
 }
 
 .practice-label {
     display: block;
-    font-size: 13px;
-    color: var(--text-2);
-    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.practice-inputs .practice-input + .practice-label {
+    margin-top: 24px;
 }
 
 .practice-actions {
