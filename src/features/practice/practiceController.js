@@ -10,10 +10,8 @@ let correctCount = 0;
 let attemptsCount = 0;
 let wrongCount = 0;
 let streak = 0;
-let hintUsedCount = 0;
-let mistakesCount = 0;
-let perfectCorrectCount = 0;
-let hintUsedForIndex = new Set();
+/** Índices donde el usuario usó "Show answer" (solo la pista penaliza). */
+let hintUsedByIndex = {};
 
 const AUTO_ADVANCE_MS = 700;
 
@@ -25,10 +23,7 @@ function resetState() {
     attemptsCount = 0;
     wrongCount = 0;
     streak = 0;
-    hintUsedCount = 0;
-    mistakesCount = 0;
-    perfectCorrectCount = 0;
-    hintUsedForIndex = new Set();
+    hintUsedByIndex = {};
 }
 
 function resetInputStates(refs) {
@@ -129,10 +124,7 @@ export function initPracticeController() {
             attemptsCount = 0;
             wrongCount = 0;
             streak = 0;
-            hintUsedCount = 0;
-            mistakesCount = 0;
-            perfectCorrectCount = 0;
-            hintUsedForIndex = new Set();
+            hintUsedByIndex = {};
             isSetActive = true;
             const verb = currentSet[currentIndex];
             updateUI(refs, verb);
@@ -162,7 +154,6 @@ export function initPracticeController() {
 
         if (pastOk && ppOk) {
             correctCount++;
-            if (!hintUsedForIndex.has(currentIndex)) perfectCorrectCount++;
             streak++;
             setFeedback(refs, "Correct ✓", "success");
             if (refs.pastInput) refs.pastInput.classList.add("is-success");
@@ -196,9 +187,11 @@ export function initPracticeController() {
                         }, 150);
                     } else {
                         updateProgress(refs);
-                        const accuracy = Math.round((perfectCorrectCount / SET_SIZE) * 100);
+                        const incorrect = Object.values(hintUsedByIndex).filter(Boolean).length;
+                        const correct = SET_SIZE - incorrect;
+                        const accuracy = Math.round((correct / SET_SIZE) * 100);
                         renderFinalScreen(
-                            { perfectCorrectCount, mistakesCount, accuracy },
+                            { correct, incorrect, accuracy },
                             () => {
                                 resetState();
                                 renderPracticeView();
@@ -210,7 +203,6 @@ export function initPracticeController() {
             }, AUTO_ADVANCE_MS);
         } else {
             wrongCount++;
-            mistakesCount++;
             streak = 0;
             setFeedback(refs, "Not quite. Try again.", "error");
             setInputErrorStates(refs, pastOk, ppOk);
@@ -247,9 +239,7 @@ export function initPracticeController() {
         const verb = currentSet[currentIndex];
         if (!verb) return;
 
-        hintUsedCount++;
-        mistakesCount++;
-        hintUsedForIndex.add(currentIndex);
+        hintUsedByIndex[currentIndex] = true;
         wrongCount++;
         attemptsCount++;
         streak = 0;

@@ -122,8 +122,9 @@ export function getPracticeRefs() {
 }
 
 /**
- * Muestra la pantalla final del set (resumen premium).
- * @param {{ perfectCorrectCount: number, mistakesCount: number, accuracy: number }} stats
+ * Muestra la pantalla final del set (resumen).
+ * Solo cuenta uso de pista: correct = sin pista, incorrect = usó pista.
+ * @param {{ correct: number, incorrect: number, accuracy: number }} stats
  * @param {() => void} onStartAnotherSet - callback al pulsar "Start another set"
  */
 export function renderFinalScreen(stats, onStartAnotherSet) {
@@ -153,12 +154,12 @@ export function renderFinalScreen(stats, onStartAnotherSet) {
     statsGrid.className = "summary-stats-grid";
     statsGrid.innerHTML = `
         <div class="summary-stat-chip">
-            <span class="summary-stat-value">${stats.perfectCorrectCount}/10</span>
-            <span class="summary-stat-label">Perfect correct</span>
+            <span class="summary-stat-value">${stats.correct}/10</span>
+            <span class="summary-stat-label">Correct</span>
         </div>
         <div class="summary-stat-chip">
-            <span class="summary-stat-value">${stats.mistakesCount}</span>
-            <span class="summary-stat-label">Mistakes</span>
+            <span class="summary-stat-value">${stats.incorrect}/10</span>
+            <span class="summary-stat-label">Incorrect (used hint)</span>
         </div>
         <div class="summary-stat-chip summary-stat-chip-full">
             <span class="summary-stat-value">${stats.accuracy}%</span>
