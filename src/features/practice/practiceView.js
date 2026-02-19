@@ -15,7 +15,7 @@ export function renderPracticeView() {
     card.className = "practice-card card";
     const cardLabel = document.createElement("span");
     cardLabel.className = "practice-card-label";
-    cardLabel.textContent = "Base form";
+    //cardLabel.textContent = "Base form";
     const verbRow = document.createElement("div");
     verbRow.className = "verb-row";
     const cardValue = document.createElement("p");
