@@ -47,7 +47,10 @@ export function renderPracticeView() {
     pastInput.id = "pastInput";
     pastInput.className = "practice-input input";
     pastInput.autocomplete = "off";
+    pastInput.autocapitalize = "none";
+    pastInput.autocorrect = "off";
     pastInput.spellcheck = false;
+    pastInput.setAttribute("inputmode", "text");
     pastInput.disabled = true;
     pastInput.setAttribute("aria-label", "Past form");
 
@@ -60,7 +63,10 @@ export function renderPracticeView() {
     ppInput.id = "ppInput";
     ppInput.className = "practice-input input";
     ppInput.autocomplete = "off";
+    ppInput.autocapitalize = "none";
+    ppInput.autocorrect = "off";
     ppInput.spellcheck = false;
+    ppInput.setAttribute("inputmode", "text");
     ppInput.disabled = true;
     ppInput.setAttribute("aria-label", "Past participle form");
 
@@ -111,44 +117,62 @@ export function getPracticeRefs() {
         feedback: document.getElementById("feedback"),
         meaningToggleBtn: document.getElementById("meaningToggleBtn"),
         meaningContainer: document.getElementById("meaningContainer"),
+        card: document.querySelector(".practice-card"),
     };
 }
 
 /**
- * Muestra la pantalla final del set (resumen).
- * @param {{ correctCount: number, attemptsCount: number }} stats
+ * Muestra la pantalla final del set (resumen premium).
+ * @param {{ perfectCorrectCount: number, mistakesCount: number, accuracy: number }} stats
  * @param {() => void} onStartAnotherSet - callback al pulsar "Start another set"
  */
 export function renderFinalScreen(stats, onStartAnotherSet) {
     const section = document.getElementById("practice");
     if (!section) return;
 
-    const accuracy =
-        stats.attemptsCount > 0
-            ? Math.round((stats.correctCount / stats.attemptsCount) * 100)
-            : 0;
-
     section.innerHTML = "";
     const container = document.createElement("div");
     container.className = "practice-summary";
 
-    const title = document.createElement("h2");
-    title.textContent = "Set complete";
+    const badge = document.createElement("span");
+    badge.className = "summary-badge";
+    badge.textContent = "10 verbs";
 
-    const statsBlock = document.createElement("div");
-    statsBlock.className = "practice-summary-stats";
-    statsBlock.innerHTML = `
-        <p>Correct: ${stats.correctCount}</p>
-        <p>Attempts: ${stats.attemptsCount}</p>
-        <p>Accuracy: ${accuracy}%</p>
+    const card = document.createElement("div");
+    card.className = "summary-card card";
+
+    const title = document.createElement("h2");
+    title.className = "summary-title";
+    title.textContent = "Set complete 🎉";
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "summary-subtitle";
+    subtitle.textContent = "Nice work — keep the streak going.";
+
+    const statsGrid = document.createElement("div");
+    statsGrid.className = "summary-stats-grid";
+    statsGrid.innerHTML = `
+        <div class="summary-stat-chip">
+            <span class="summary-stat-value">${stats.perfectCorrectCount}/10</span>
+            <span class="summary-stat-label">Perfect correct</span>
+        </div>
+        <div class="summary-stat-chip">
+            <span class="summary-stat-value">${stats.mistakesCount}</span>
+            <span class="summary-stat-label">Mistakes</span>
+        </div>
+        <div class="summary-stat-chip summary-stat-chip-full">
+            <span class="summary-stat-value">${stats.accuracy}%</span>
+            <span class="summary-stat-label">Accuracy</span>
+        </div>
     `;
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "practice-btn btn-primary";
+    btn.className = "practice-btn btn-primary summary-btn";
     btn.textContent = "Start another set";
     btn.addEventListener("click", onStartAnotherSet);
 
-    container.append(title, statsBlock, btn);
+    card.append(title, subtitle, statsGrid, btn);
+    container.append(badge, card);
     section.appendChild(container);
 }

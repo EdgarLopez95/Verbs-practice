@@ -10,6 +10,10 @@ let correctCount = 0;
 let attemptsCount = 0;
 let wrongCount = 0;
 let streak = 0;
+let hintUsedCount = 0;
+let mistakesCount = 0;
+let perfectCorrectCount = 0;
+let hintUsedForIndex = new Set();
 
 const AUTO_ADVANCE_MS = 700;
 
@@ -21,6 +25,10 @@ function resetState() {
     attemptsCount = 0;
     wrongCount = 0;
     streak = 0;
+    hintUsedCount = 0;
+    mistakesCount = 0;
+    perfectCorrectCount = 0;
+    hintUsedForIndex = new Set();
 }
 
 function resetInputStates(refs) {
@@ -121,6 +129,10 @@ export function initPracticeController() {
             attemptsCount = 0;
             wrongCount = 0;
             streak = 0;
+            hintUsedCount = 0;
+            mistakesCount = 0;
+            perfectCorrectCount = 0;
+            hintUsedForIndex = new Set();
             isSetActive = true;
             const verb = currentSet[currentIndex];
             updateUI(refs, verb);
@@ -150,6 +162,7 @@ export function initPracticeController() {
 
         if (pastOk && ppOk) {
             correctCount++;
+            if (!hintUsedForIndex.has(currentIndex)) perfectCorrectCount++;
             streak++;
             setFeedback(refs, "Correct ✓", "success");
             if (refs.pastInput) refs.pastInput.classList.add("is-success");
@@ -157,32 +170,54 @@ export function initPracticeController() {
             setInputsAndHintEnabled(refs, false);
             refs.primaryBtn.disabled = true;
 
+            if (refs.card) {
+                refs.card.classList.add("success-animate");
+                setTimeout(() => refs.card.classList.remove("success-animate"), 250);
+            }
+
             setTimeout(() => {
-                resetInputStates(refs);
-                currentIndex++;
-                if (currentIndex < SET_SIZE) {
-                    const nextVerb = currentSet[currentIndex];
-                    updateUI(refs, nextVerb);
-                    setInputsAndHintEnabled(refs, true);
-                    refs.primaryBtn.disabled = false;
-                    setFeedback(refs, "", null);
-                    refs.pastInput?.focus();
-                } else {
-                    renderFinalScreen(
-                        { correctCount, attemptsCount },
-                        () => {
-                            resetState();
-                            renderPracticeView();
-                            initPracticeController();
+                if (refs.card) refs.card.classList.add("fade-out");
+                setTimeout(() => {
+                    resetInputStates(refs);
+                    currentIndex++;
+                    if (currentIndex < SET_SIZE) {
+                        const nextVerb = currentSet[currentIndex];
+                        updateUI(refs, nextVerb);
+                        if (refs.card) {
+                            refs.card.classList.remove("fade-out");
+                            refs.card.classList.add("fade-in");
                         }
-                    );
-                }
+                        setInputsAndHintEnabled(refs, true);
+                        refs.primaryBtn.disabled = false;
+                        setFeedback(refs, "", null);
+                        refs.pastInput?.focus();
+                        setTimeout(() => {
+                            if (refs.card) refs.card.classList.remove("fade-in");
+                        }, 150);
+                    } else {
+                        updateProgress(refs);
+                        const accuracy = Math.round((perfectCorrectCount / SET_SIZE) * 100);
+                        renderFinalScreen(
+                            { perfectCorrectCount, mistakesCount, accuracy },
+                            () => {
+                                resetState();
+                                renderPracticeView();
+                                initPracticeController();
+                            }
+                        );
+                    }
+                }, 150);
             }, AUTO_ADVANCE_MS);
         } else {
             wrongCount++;
+            mistakesCount++;
             streak = 0;
             setFeedback(refs, "Not quite. Try again.", "error");
             setInputErrorStates(refs, pastOk, ppOk);
+            if (refs.card) {
+                refs.card.classList.add("error-animate");
+                setTimeout(() => refs.card.classList.remove("error-animate"), 300);
+            }
             if (!pastOk) refs.pastInput?.focus();
             else refs.ppInput?.focus();
         }
@@ -212,6 +247,9 @@ export function initPracticeController() {
         const verb = currentSet[currentIndex];
         if (!verb) return;
 
+        hintUsedCount++;
+        mistakesCount++;
+        hintUsedForIndex.add(currentIndex);
         wrongCount++;
         attemptsCount++;
         streak = 0;
