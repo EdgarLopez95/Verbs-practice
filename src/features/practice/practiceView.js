@@ -10,37 +10,6 @@ export function renderPracticeView() {
     const container = document.createElement("div");
     container.className = "practice";
 
-    // Header interno: Set: <span id="setCount">0</span>/10
-    const header = document.createElement("header");
-    header.className = "practice-header";
-    const title = document.createElement("h1");
-    title.className = "practice-title";
-    title.textContent = "Practice";
-    const setInfo = document.createElement("p");
-    setInfo.className = "practice-set-info";
-    setInfo.innerHTML = 'Set: <span id="setCount">0</span>/10';
-    header.append(title, setInfo);
-
-    // Progress bar + texto 0%
-    const progressOuter = document.createElement("div");
-    progressOuter.className = "practice-progress-outer";
-    const progressWrap = document.createElement("div");
-    progressWrap.className = "practice-progress-wrap progress-track";
-    progressWrap.setAttribute("role", "progressbar");
-    progressWrap.setAttribute("aria-valuenow", "0");
-    progressWrap.setAttribute("aria-valuemin", "0");
-    progressWrap.setAttribute("aria-valuemax", "100");
-    progressWrap.setAttribute("aria-label", "Progress");
-    const progressBar = document.createElement("div");
-    progressBar.className = "practice-progress-bar progress-fill";
-    const progressText = document.createElement("span");
-    progressText.className = "practice-progress-text";
-    progressText.id = "progressText";
-    progressText.textContent = "0%";
-    progressWrap.appendChild(progressBar);
-    progressOuter.appendChild(progressWrap);
-    progressOuter.appendChild(progressText);
-
     // Verb card: Base form | row (baseVerb + meaningToggleBtn) | meaningContainer debajo
     const card = document.createElement("div");
     card.className = "practice-card card";
@@ -120,7 +89,7 @@ export function renderPracticeView() {
     feedback.setAttribute("aria-live", "polite");
     feedback.setAttribute("aria-atomic", "true");
 
-    container.append(header, progressOuter, card, inputsWrap, actions, feedback);
+    container.append(card, inputsWrap, actions, feedback);
     section.appendChild(container);
 }
 
@@ -131,8 +100,8 @@ export function renderPracticeView() {
 export function getPracticeRefs() {
     return {
         setCount: document.getElementById("setCount"),
-        progressBar: document.querySelector(".practice-progress-bar"),
-        progressWrap: document.querySelector(".practice-progress-wrap"),
+        progressBar: document.getElementById("progressBar"),
+        progressWrap: document.getElementById("progressWrap"),
         progressText: document.getElementById("progressText"),
         baseVerb: document.getElementById("baseVerb"),
         pastInput: document.getElementById("pastInput"),

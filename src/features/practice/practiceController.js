@@ -10,7 +10,8 @@ let correctCount = 0;
 let attemptsCount = 0;
 let wrongCount = 0;
 let streak = 0;
-let isShowingNext = false;
+
+const AUTO_ADVANCE_MS = 700;
 
 function resetState() {
     currentSet = [];
@@ -20,7 +21,22 @@ function resetState() {
     attemptsCount = 0;
     wrongCount = 0;
     streak = 0;
-    isShowingNext = false;
+}
+
+function resetInputStates(refs) {
+    if (refs.pastInput) refs.pastInput.classList.remove("is-success", "is-error");
+    if (refs.ppInput) refs.ppInput.classList.remove("is-success", "is-error");
+}
+
+function setInputErrorStates(refs, pastOk, ppOk) {
+    if (refs.pastInput) {
+        if (pastOk) refs.pastInput.classList.remove("is-error");
+        else refs.pastInput.classList.add("is-error");
+    }
+    if (refs.ppInput) {
+        if (ppOk) refs.ppInput.classList.remove("is-error");
+        else refs.ppInput.classList.add("is-error");
+    }
 }
 
 function getBaseForm(verb) {
@@ -90,14 +106,14 @@ export function initPracticeController() {
     const refs = getPracticeRefs();
     if (!refs.primaryBtn || !refs.feedback) return;
 
-    updateUI(refs);
-    setInputsAndHintEnabled(refs, false);
-    refs.primaryBtn.textContent = "Start set";
-    isShowingNext = false;
+    refs.primaryBtn.textContent = "Check";
+    refs.primaryBtn.disabled = true;
     refs.feedback.textContent = "";
     refs.feedback.classList.remove("feedback-success", "feedback-error");
+    setInputsAndHintEnabled(refs, false);
+    updateUI(refs);
 
-    async function onStartSet() {
+    async function startSet() {
         try {
             currentSet = await getRandomVerbs(SET_SIZE);
             currentIndex = 0;
@@ -106,21 +122,25 @@ export function initPracticeController() {
             wrongCount = 0;
             streak = 0;
             isSetActive = true;
-            isShowingNext = false;
             const verb = currentSet[currentIndex];
             updateUI(refs, verb);
             setInputsAndHintEnabled(refs, true);
-            refs.primaryBtn.textContent = "Check";
+            refs.primaryBtn.disabled = false;
             setFeedback(refs, "", null);
+            resetInputStates(refs);
+            refs.pastInput?.focus();
         } catch (err) {
             setFeedback(refs, "Could not load verbs.", "error");
         }
     }
 
+    startSet();
+
     function onCheck() {
         const verb = currentSet[currentIndex];
         if (!verb) return;
 
+        resetInputStates(refs);
         const pastVal = refs.pastInput?.value ?? "";
         const ppVal = refs.ppInput?.value ?? "";
         const pastOk = matchesForm(pastVal, verb.forms?.past);
@@ -131,14 +151,40 @@ export function initPracticeController() {
         if (pastOk && ppOk) {
             correctCount++;
             streak++;
-            setFeedback(refs, "Correct!", "success");
-            refs.primaryBtn.textContent = "Next";
-            isShowingNext = true;
+            setFeedback(refs, "Correct ✓", "success");
+            if (refs.pastInput) refs.pastInput.classList.add("is-success");
+            if (refs.ppInput) refs.ppInput.classList.add("is-success");
+            setInputsAndHintEnabled(refs, false);
+            refs.primaryBtn.disabled = true;
+
+            setTimeout(() => {
+                resetInputStates(refs);
+                currentIndex++;
+                if (currentIndex < SET_SIZE) {
+                    const nextVerb = currentSet[currentIndex];
+                    updateUI(refs, nextVerb);
+                    setInputsAndHintEnabled(refs, true);
+                    refs.primaryBtn.disabled = false;
+                    setFeedback(refs, "", null);
+                    refs.pastInput?.focus();
+                } else {
+                    renderFinalScreen(
+                        { correctCount, attemptsCount },
+                        () => {
+                            resetState();
+                            renderPracticeView();
+                            initPracticeController();
+                        }
+                    );
+                }
+            }, AUTO_ADVANCE_MS);
         } else {
             wrongCount++;
             streak = 0;
             setFeedback(refs, "Not quite. Try again.", "error");
-            refs.pastInput?.focus();
+            setInputErrorStates(refs, pastOk, ppOk);
+            if (!pastOk) refs.pastInput?.focus();
+            else refs.ppInput?.focus();
         }
     }
 
@@ -159,26 +205,6 @@ export function initPracticeController() {
             container.classList.add("hidden");
             container.setAttribute("aria-hidden", "true");
             btn.textContent = "Show meaning";
-        }
-    }
-
-    function onNext() {
-        currentIndex++;
-        if (currentIndex < SET_SIZE) {
-            const verb = currentSet[currentIndex];
-            updateUI(refs, verb);
-            refs.primaryBtn.textContent = "Check";
-            isShowingNext = false;
-            setFeedback(refs, "", null);
-        } else {
-            renderFinalScreen(
-                { correctCount, attemptsCount },
-                () => {
-                    resetState();
-                    renderPracticeView();
-                    initPracticeController();
-                }
-            );
         }
     }
 
@@ -221,13 +247,7 @@ export function initPracticeController() {
     }
 
     refs.primaryBtn.addEventListener("click", () => {
-        if (!isSetActive) {
-            onStartSet();
-        } else if (isShowingNext) {
-            onNext();
-        } else {
-            onCheck();
-        }
+        if (isSetActive) onCheck();
     });
 
     refs.hintBtn?.addEventListener("click", onHint);

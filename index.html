@@ -11,9 +11,21 @@
 </head>
 <body>
     <div id="app">
-        <header class="app-header">
-            <span class="app-header-title">Verb Flow</span>
-            <button type="button" id="loginBtn" class="app-header-login">Login</button>
+        <header class="hero">
+            <div class="header-inner">
+                <span class="hero-brand">Verb Flow</span>
+                <button type="button" id="loginBtn" class="hero-login">Login</button>
+            </div>
+            <div class="hero-top">
+                <h1 class="hero-title">Practice</h1>
+                <p class="hero-set">Set: <span id="setCount">0</span>/10</p>
+            </div>
+            <div class="hero-progress-outer">
+                <div class="hero-progress-wrap" id="progressWrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress">
+                    <div class="hero-progress-fill" id="progressBar"></div>
+                </div>
+                <span id="progressText" class="hero-progress-text">0%</span>
+            </div>
         </header>
         <main class="app-main">
             <section id="practice" class="view">
