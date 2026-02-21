@@ -65,6 +65,17 @@ async function startPracticeForLevel(levelKey) {
     setActiveLevelKey(levelKey);
     showPractice();
     initPractice();
+    /* Evitar que el teclado se abra: blur y foco en contenedor no editable */
+    if (typeof document.activeElement?.blur === "function") document.activeElement.blur();
+    const practiceEl = document.getElementById("practice");
+    if (practiceEl) {
+        practiceEl.setAttribute("tabindex", "-1");
+        practiceEl.focus({ preventScroll: true });
+    }
+    setTimeout(() => {
+        if (typeof document.activeElement?.blur === "function") document.activeElement.blur();
+        if (practiceEl) practiceEl.focus({ preventScroll: true });
+    }, 0);
 }
 
 function onChangeLevel() {
@@ -80,7 +91,9 @@ function initGuestNavigation() {
     const changeLevelBtn = document.getElementById("changeLevelBtn");
 
     levelCards.forEach((btn) => {
-        btn.addEventListener("click", async () => {
+        btn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const levelKey = btn.getAttribute("data-level");
             if (!levelKey || !LEVEL_KEYS.includes(levelKey)) return;
             await startPracticeForLevel(levelKey);

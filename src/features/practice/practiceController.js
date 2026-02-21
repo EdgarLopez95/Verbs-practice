@@ -72,7 +72,7 @@ export function initPracticeController() {
     refs.feedback.classList.remove("feedback-success", "feedback-error");
     setInputsAndHintEnabled(refs, true);
     renderCurrentVerb(refs);
-    refs.pastInput?.focus();
+    /* No auto-focus al entrar a Practice para no abrir teclado en móvil */
     wirePracticeEvents();
 }
 
