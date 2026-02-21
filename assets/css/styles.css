@@ -316,6 +316,54 @@ body {
     width: 100%;
 }
 
+/* Hero Motivation Zone */
+.level-hero {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-2);
+    padding: var(--s-2);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+}
+
+.level-hero__icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.level-hero__content {
+    min-width: 0;
+}
+
+.level-hero__headline {
+    margin: 0 0 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+.level-hero__sub {
+    margin: 0 0 var(--s-1);
+    font-size: 0.8125rem;
+    color: var(--text-2);
+    line-height: 1.4;
+}
+
+.level-hero__badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-2);
+    background: rgba(15, 23, 42, 0.06);
+    border-radius: 999px;
+}
+
 .level-intro {
     flex-shrink: 0;
 }
@@ -335,7 +383,7 @@ body {
     line-height: 1.5;
 }
 
-/* Contenedor de cards: reparte el alto restante entre las 3 */
+/* Contenedor de cards: reparte el alto restante entre las 3 + stagger */
 .level-cards {
     flex: 1;
     min-height: 0;
@@ -344,7 +392,7 @@ body {
     gap: clamp(10px, 2vh, 16px);
 }
 
-/* Card: flex 1 para repartir espacio, contenido compacto */
+/* Card: profundidad visual + animación entrada */
 .level-card {
     flex: 1;
     min-height: 0;
@@ -357,22 +405,52 @@ body {
     padding: clamp(12px, 2vh, 16px);
     font-family: inherit;
     color: var(--text);
-    background: var(--surface);
     border: 2px solid var(--border);
     border-radius: 18px;
-    box-shadow: var(--shadow-sm), 0 4px 12px rgba(15, 23, 42, 0.06);
     cursor: pointer;
-    transition: transform 0.12s ease, box-shadow 0.2s, border-color 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.2s ease;
     position: relative;
+    overflow: hidden;
+    animation: levelCardFadeIn 0.4s ease backwards;
 }
 
+.level-card:nth-child(1) { animation-delay: 0.05s; }
+.level-card:nth-child(2) { animation-delay: 0.15s; }
+.level-card:nth-child(3) { animation-delay: 0.25s; }
+
+@keyframes levelCardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Icono gigante difuminado de fondo */
+.level-card__bg-icon {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem;
+    line-height: 1;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.level-card--mandatory .level-card__bg-icon { color: #16a34a; }
+.level-card--medium .level-card__bg-icon { color: #d97706; }
+.level-card--hard .level-card__bg-icon { color: #dc2626; }
+
 .level-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transform: scale(1.01) translateY(-2px);
 }
 
 .level-card:active {
-    transform: translateY(0) scale(0.99);
+    transform: scale(0.99) translateY(0);
 }
 
 .level-card:focus-visible {
@@ -380,32 +458,35 @@ body {
     box-shadow: 0 0 0 3px var(--primary-50);
 }
 
-/* Psicología del color por nivel (premium) */
+/* Fondos con gradiente sutil por nivel */
 .level-card--mandatory {
-    border-color: rgba(46, 204, 113, 0.35);
-    box-shadow: 0 14px 30px rgba(46, 204, 113, 0.12);
+    background: linear-gradient(135deg, #fff 0%, rgba(240, 253, 244, 0.6) 100%);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(46, 204, 113, 0.08);
 }
 .level-card--mandatory:hover {
-    border-color: rgba(46, 204, 113, 0.5);
-    box-shadow: 0 18px 36px rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.55);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1), 0 0 24px rgba(46, 204, 113, 0.12);
 }
 
 .level-card--medium {
-    border-color: rgba(243, 156, 18, 0.35);
-    box-shadow: 0 14px 30px rgba(243, 156, 18, 0.12);
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 251, 235, 0.6) 100%);
+    border-color: rgba(243, 156, 18, 0.4);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(243, 156, 18, 0.08);
 }
 .level-card--medium:hover {
-    border-color: rgba(243, 156, 18, 0.5);
-    box-shadow: 0 18px 36px rgba(243, 156, 18, 0.15);
+    border-color: rgba(243, 156, 18, 0.55);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1), 0 0 24px rgba(243, 156, 18, 0.12);
 }
 
 .level-card--hard {
-    border-color: rgba(231, 76, 60, 0.35);
-    box-shadow: 0 14px 30px rgba(231, 76, 60, 0.12);
+    background: linear-gradient(135deg, #fff 0%, rgba(254, 242, 242, 0.5) 100%);
+    border-color: rgba(231, 76, 60, 0.4);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(231, 76, 60, 0.08);
 }
 .level-card--hard:hover {
-    border-color: rgba(231, 76, 60, 0.5);
-    box-shadow: 0 18px 36px rgba(231, 76, 60, 0.15);
+    border-color: rgba(231, 76, 60, 0.55);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1), 0 0 24px rgba(231, 76, 60, 0.12);
 }
 
 /* Header en fila: icono + título a la izquierda, badge a la derecha */
@@ -424,7 +505,7 @@ body {
 }
 
 .level-card__icon {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1;
 }
 
@@ -453,6 +534,13 @@ body {
 
 .level-card__body {
     margin-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.level-card__header {
+    position: relative;
+    z-index: 1;
 }
 
 .level-card__count {
@@ -463,11 +551,20 @@ body {
     color: var(--text);
 }
 
-.level-card__hint {
+.level-card__metric {
     margin: 6px 0 0;
-    font-size: 13px;
-    opacity: 0.8;
+    font-size: 12px;
+    line-height: 1.35;
+    opacity: 0.85;
     color: var(--text-2);
+}
+
+.level-card__cta {
+    margin: 8px 0 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    opacity: 0.75;
 }
 
 .level-card--mandatory .level-badge {
@@ -497,6 +594,12 @@ body {
 
 /* Pantallas con poco alto (móvil): reducir tipografías y evitar corte */
 @media (max-height: 700px) {
+    .level-hero__headline {
+        font-size: 0.875rem;
+    }
+    .level-hero__sub {
+        font-size: 0.75rem;
+    }
     .level-intro-title {
         font-size: 1.25rem;
     }
@@ -506,7 +609,7 @@ body {
     .level-card__title {
         font-size: 1.25rem;
     }
-    .level-card__hint {
+    .level-card__metric {
         display: none;
     }
     .level-screen {
