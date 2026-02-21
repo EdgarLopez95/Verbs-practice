@@ -28,12 +28,28 @@
     --s-2: 16px;
     --s-3: 24px;
     --s-4: 32px;
+
+    /* Level cards: psicología del color (acentos suaves) */
+    --level-mandatory: #22C55E;
+    --level-mandatory-soft: rgba(34, 197, 94, 0.15);
+    --level-mandatory-border: rgba(34, 197, 94, 0.4);
+    --level-medium: #D97706;
+    --level-medium-soft: rgba(217, 119, 6, 0.12);
+    --level-medium-border: rgba(217, 119, 6, 0.35);
+    --level-hard: #DC2626;
+    --level-hard-soft: rgba(220, 38, 38, 0.12);
+    --level-hard-border: rgba(220, 38, 38, 0.4);
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
 }
 
 body {
@@ -44,6 +60,7 @@ body {
     color: var(--text);
     background: #F1F5F9;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .hidden {
@@ -54,6 +71,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    height: 100%;
 }
 
 /* ---------- Hero (header premium) ---------- */
@@ -100,6 +118,21 @@ body {
     cursor: pointer;
 }
 
+.hero-login.icon-btn {
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-login.icon-btn svg {
+    display: block;
+}
+
 .hero-login:hover {
     background: rgba(255, 255, 255, 0.3);
 }
@@ -122,6 +155,10 @@ body {
 
 .hero-title-row {
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2);
 }
 
 .hero-title-row .hero-title {
@@ -129,6 +166,11 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     color: #fff;
+    min-width: 0;
+}
+
+.hero-title-row .hero-change-level {
+    flex-shrink: 0;
 }
 
 .hero-meta-row {
@@ -148,7 +190,7 @@ body {
     max-width: 420px;
     margin: 0 auto;
     margin-top: var(--s-2);
-    padding: 0 var(--s-2);
+    
     display: grid;
     grid-template-columns: minmax(120px, 1fr) auto;
     align-items: center;
@@ -233,70 +275,230 @@ body {
 
 .app-main {
     flex: 1;
-    overflow: auto;
+    min-height: 0;
+    overflow: hidden;
     margin-top: -12px;
     padding: 16px var(--s-2) 0;
+    display: flex;
+    flex-direction: column;
 }
 
-/* ---------- Level Select (guest) ---------- */
-.level-select {
-    max-width: 420px;
+/* Vista que ocupa el alto disponible (sin scroll en level select) */
+.view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.view.hidden {
+    display: none;
+}
+
+/* Practice view: cuando está visible, permite scroll interno */
+#practice.view {
+    overflow: auto;
+}
+
+/* ---------- Level Select (guest): full-height, sin scroll ---------- */
+.level-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-2);
+    gap: var(--s-2);
+    max-width: 520px;
     margin: 0 auto;
-    padding: var(--s-3) var(--s-2);
+    width: 100%;
 }
 
-.level-select-title {
+.level-intro {
+    flex-shrink: 0;
+}
+
+.level-intro-title {
     margin: 0 0 var(--s-1);
     font-size: 1.5rem;
     font-weight: 700;
+    line-height: 1.2;
     color: var(--text);
 }
 
-.level-select-subtitle {
-    margin: 0 0 var(--s-3);
+.level-intro-subtitle {
+    margin: 0;
     font-size: 15px;
     color: var(--text-2);
     line-height: 1.5;
 }
 
-.level-select-grid {
-    display: grid;
-    gap: var(--s-2);
+/* Contenedor de cards: reparte el alto restante entre las 3 */
+.level-cards {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
 }
 
+/* Card: flex 1 para repartir espacio, contenido compacto */
 .level-card {
-    display: block;
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
     text-align: left;
-    padding: var(--s-2) var(--s-3);
-    font-size: 1rem;
+    padding: clamp(14px, 3vw, 18px);
     font-family: inherit;
-    font-weight: 600;
     color: var(--text);
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border: 2px solid var(--border);
+    border-radius: 18px;
     box-shadow: var(--shadow-sm), 0 4px 12px rgba(15, 23, 42, 0.06);
     cursor: pointer;
-    transition: transform 0.08s ease, box-shadow 0.2s, border-color 0.2s;
+    transition: transform 0.12s ease, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
 }
 
 .level-card:hover {
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
-    border-color: var(--primary-100);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.level-card:active {
+    transform: translateY(0) scale(0.99);
 }
 
 .level-card:focus-visible {
     outline: none;
-    box-shadow: var(--shadow-focus);
+    box-shadow: 0 0 0 3px var(--primary-50);
 }
 
-.level-card-sub {
-    display: block;
-    margin-top: 2px;
+/* Psicología del color por nivel (premium) */
+.level-card--mandatory {
+    border-color: rgba(46, 204, 113, 0.35);
+    box-shadow: 0 14px 30px rgba(46, 204, 113, 0.12);
+}
+.level-card--mandatory:hover {
+    border-color: rgba(46, 204, 113, 0.5);
+    box-shadow: 0 18px 36px rgba(46, 204, 113, 0.15);
+}
+
+.level-card--medium {
+    border-color: rgba(243, 156, 18, 0.35);
+    box-shadow: 0 14px 30px rgba(243, 156, 18, 0.12);
+}
+.level-card--medium:hover {
+    border-color: rgba(243, 156, 18, 0.5);
+    box-shadow: 0 18px 36px rgba(243, 156, 18, 0.15);
+}
+
+.level-card--hard {
+    border-color: rgba(231, 76, 60, 0.35);
+    box-shadow: 0 14px 30px rgba(231, 76, 60, 0.12);
+}
+.level-card--hard:hover {
+    border-color: rgba(231, 76, 60, 0.5);
+    box-shadow: 0 18px 36px rgba(231, 76, 60, 0.15);
+}
+
+/* Header en fila: icono + título a la izquierda, badge a la derecha */
+.level-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.level-card__titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.level-card__icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.level-card__title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.level-badge {
+    margin: 0;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.level-card__body {
+    margin-top: 10px;
+}
+
+.level-card__count {
+    margin: 0;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
+    opacity: 0.9;
+    color: var(--text);
+}
+
+.level-card__hint {
+    margin: 6px 0 0;
+    font-size: 13px;
+    opacity: 0.8;
     color: var(--text-2);
+}
+
+.level-card--mandatory .level-badge {
+    background: rgba(46, 204, 113, 0.14);
+    color: #1e874f;
+}
+
+.level-card--medium .level-badge {
+    background: rgba(243, 156, 18, 0.14);
+    color: #a86100;
+}
+
+.level-card--hard .level-badge {
+    background: rgba(231, 76, 60, 0.14);
+    color: #b73b30;
+}
+
+/* Pantallas muy estrechas: título puede partir línea */
+@media (max-width: 360px) {
+    .level-card__header {
+        align-items: flex-start;
+    }
+    .level-card__title {
+        white-space: normal;
+    }
+}
+
+/* Landscape / poco alto: compactar */
+@media (max-height: 650px) {
+    .level-screen {
+        padding: var(--s-3);
+    }
+    .level-card {
+        padding: 12px;
+    }
 }
 
 /* ---------- Componentes reutilizables ---------- */
@@ -483,6 +685,20 @@ body {
 .btn-ghost-small:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* Meaning toggle: solo ícono (ojito), sin texto */
+.practice-meaning-toggle.meaning-toggle-icon {
+    padding: 8px;
+    min-width: 40px;
+}
+
+.practice-meaning-toggle.meaning-toggle-icon::before {
+    content: none;
+}
+
+.practice-meaning-toggle.meaning-toggle-icon svg {
+    display: block;
 }
 
 .progress-track {

@@ -82,7 +82,7 @@ function updateHero(refs) {
     const setIndex = levelState.setIndex;
     const verbIndex = levelState.verbIndex;
     if (refs.setCount) refs.setCount.textContent = String(setIndex + 1);
-    if (refs.verbCount) refs.verbCount.textContent = String(verbIndex + 1);
+    if (refs.verbCount) refs.verbCount.textContent = String(verbIndex + 1); /* opcional: ya no en UI */
     const pct = Math.round((verbIndex / SET_SIZE) * 100);
     if (refs.progressFill) refs.progressFill.style.width = `${pct}%`;
     if (refs.progressBar) refs.progressBar.setAttribute("aria-valuenow", String(pct));
@@ -122,7 +122,7 @@ function renderCurrentVerb(refs) {
         refs.meaningContainer.classList.add("hidden");
         refs.meaningContainer.textContent = "";
     }
-    if (refs.meaningToggleBtn) refs.meaningToggleBtn.textContent = "Show meaning";
+    if (refs.meaningToggleBtn) refs.meaningToggleBtn.setAttribute("aria-label", "Show meaning");
 }
 
 function resetInputStates(refs) {
@@ -155,7 +155,7 @@ function resetMeaningAndHintUI(refs) {
         refs.meaningContainer.classList.add("hidden");
         refs.meaningContainer.setAttribute("aria-hidden", "true");
     }
-    if (refs.meaningToggleBtn) refs.meaningToggleBtn.textContent = "Show meaning";
+    if (refs.meaningToggleBtn) refs.meaningToggleBtn.setAttribute("aria-label", "Show meaning");
     if (refs.pastInput) refs.pastInput.classList.remove("hint-active");
     if (refs.ppInput) refs.ppInput.classList.remove("hint-active");
 }
@@ -257,12 +257,12 @@ function onMeaningToggle() {
         container.textContent = `(es: ${meaning})`;
         container.classList.remove("hidden");
         container.setAttribute("aria-hidden", "false");
-        btn.textContent = "Hide meaning";
+        btn.setAttribute("aria-label", "Hide meaning");
     } else {
         container.textContent = "";
         container.classList.add("hidden");
         container.setAttribute("aria-hidden", "true");
-        btn.textContent = "Show meaning";
+        btn.setAttribute("aria-label", "Show meaning");
     }
 }
 

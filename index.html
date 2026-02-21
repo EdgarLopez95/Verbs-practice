@@ -15,16 +15,18 @@
         <header class="hero">
             <div class="header-inner">
                 <span class="hero-brand">Verb Flow</span>
-                <button type="button" id="changeLevelBtn" class="hero-change-level hidden">Change level</button>
-                <button type="button" id="loginBtn" class="hero-login">Login</button>
+                <button type="button" id="loginBtn" class="hero-login icon-btn" aria-label="Login">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </button>
             </div>
             <div id="heroPracticeBlock" class="hero-practice-block hidden">
                 <div class="hero-practice">
                     <div class="hero-title-row">
                         <h1 class="hero-title">Practice</h1>
+                        <button type="button" id="changeLevelBtn" class="hero-change-level hidden">Change level</button>
                     </div>
                     <div class="hero-meta-row">
-                        <span class="hero-set">Set: <span id="setCount">0</span>/5 · Verb: <span id="verbCount">0</span>/10</span>
+                        <span class="hero-set">Set: <span id="setCount">0</span>/5</span>
                     </div>
                     <div class="hero-progress-outer">
                         <div id="progressBar" class="hero-progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress">
@@ -37,13 +39,51 @@
         </header>
         <main class="app-main">
             <section id="levelSelect" class="view">
-                <div class="level-select">
-                    <h2 class="level-select-title">Choose your level</h2>
-                    <p class="level-select-subtitle">Pick a pack of 50 verbs. You'll practice in sets of 10.</p>
-                    <div class="level-select-grid">
-                        <button type="button" class="level-card" data-level="mandatory">Obligatoria <span class="level-card-sub">(50 verbos)</span></button>
-                        <button type="button" class="level-card" data-level="medium">Medio <span class="level-card-sub">(50 verbos)</span></button>
-                        <button type="button" class="level-card" data-level="hard">Difícil <span class="level-card-sub">(50 verbos)</span></button>
+                <div class="level-screen">
+                    <div class="level-intro">
+                        <h1 class="level-intro-title">Choose your level</h1>
+                        <p class="level-intro-subtitle">Pick a pack of 50 verbs. You'll practice in sets of 10.</p>
+                    </div>
+                    <div class="level-cards">
+                        <button type="button" class="level-card level-card--mandatory" data-level="mandatory">
+                            <div class="level-card__header">
+                                <div class="level-card__titleGroup">
+                                    <span class="level-card__icon" aria-hidden="true">✅</span>
+                                    <h3 class="level-card__title">Obligatoria</h3>
+                                </div>
+                                <span class="level-badge">Recommended</span>
+                            </div>
+                            <div class="level-card__body">
+                                <p class="level-card__count">50 verbos</p>
+                                <p class="level-card__hint">Start here</p>
+                            </div>
+                        </button>
+                        <button type="button" class="level-card level-card--medium" data-level="medium">
+                            <div class="level-card__header">
+                                <div class="level-card__titleGroup">
+                                    <span class="level-card__icon" aria-hidden="true">⚡</span>
+                                    <h3 class="level-card__title">Medio</h3>
+                                </div>
+                                <span class="level-badge">Balanced</span>
+                            </div>
+                            <div class="level-card__body">
+                                <p class="level-card__count">50 verbos</p>
+                                <p class="level-card__hint">Build consistency</p>
+                            </div>
+                        </button>
+                        <button type="button" class="level-card level-card--hard" data-level="hard">
+                            <div class="level-card__header">
+                                <div class="level-card__titleGroup">
+                                    <span class="level-card__icon" aria-hidden="true">🔥</span>
+                                    <h3 class="level-card__title">Difícil</h3>
+                                </div>
+                                <span class="level-badge">Challenge</span>
+                            </div>
+                            <div class="level-card__body">
+                                <p class="level-card__count">50 verbos</p>
+                                <p class="level-card__hint">Push your limits</p>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </section>
