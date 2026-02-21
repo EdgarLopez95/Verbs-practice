@@ -109,53 +109,73 @@ body {
     outline-offset: 2px;
 }
 
-.hero-top {
+/* Bloque Practice: título, meta (Set/Verb), barra de progreso */
+.hero-practice {
     max-width: 420px;
     margin: 0 auto;
     padding: 0 var(--s-2);
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 12px;
+    flex-direction: column;
+    gap: 0;
+    margin-top: var(--s-2);
 }
 
-.hero-title {
+.hero-title-row {
+    margin: 0;
+}
+
+.hero-title-row .hero-title {
     margin: 0;
     font-size: 1.75rem;
     font-weight: 700;
     color: #fff;
 }
 
-.hero-set {
+.hero-meta-row {
+    margin-top: var(--s-1_5);
+}
+
+.hero-meta-row .hero-set {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
     opacity: 0.9;
     color: #fff;
     white-space: nowrap;
 }
 
 .hero-progress-outer {
+    width: 100%;
     max-width: 420px;
     margin: 0 auto;
-    margin-top: 16px;
+    margin-top: var(--s-2);
     padding: 0 var(--s-2);
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) auto;
     align-items: center;
     gap: var(--s-1);
+    overflow: visible;
 }
 
+/* Contenedor de la barra (track): columna 1, siempre con ancho y altura visibles */
+#progressBar.hero-progress-wrap,
+.hero-progress-outer #progressBar,
 .hero-progress-wrap {
-    flex: 1;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    min-width: 0;
+    height: 10px;
+    min-height: 10px;
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 999px;
     overflow: hidden;
 }
 
+/* Fill: ancho lo controla el JS (%), altura 100% del track */
+#progressFill,
 .hero-progress-fill {
+    display: block;
     height: 100%;
     width: 0%;
+    min-height: 100%;
     background: #fff;
     border-radius: 999px;
     transition: width 250ms ease;
@@ -164,10 +184,50 @@ body {
 .hero-progress-text {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.9);
-    min-width: 2rem;
+    min-width: 2.5rem;
+    text-align: right;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: center;
 }
 
 .hero-progress-text:empty {
+    display: none;
+}
+
+.hero-practice-block {
+    margin-top: 8px;
+}
+
+.hero-practice-block.hidden {
+    display: none;
+}
+
+.hero-change-level {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.hero-change-level:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.hero-change-level:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.hero-change-level.hidden {
     display: none;
 }
 
@@ -176,6 +236,67 @@ body {
     overflow: auto;
     margin-top: -12px;
     padding: 16px var(--s-2) 0;
+}
+
+/* ---------- Level Select (guest) ---------- */
+.level-select {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: var(--s-3) var(--s-2);
+}
+
+.level-select-title {
+    margin: 0 0 var(--s-1);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.level-select-subtitle {
+    margin: 0 0 var(--s-3);
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.5;
+}
+
+.level-select-grid {
+    display: grid;
+    gap: var(--s-2);
+}
+
+.level-card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--s-2) var(--s-3);
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm), 0 4px 12px rgba(15, 23, 42, 0.06);
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.2s, border-color 0.2s;
+}
+
+.level-card:hover {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+    border-color: var(--primary-100);
+}
+
+.level-card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+}
+
+.level-card-sub {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-2);
 }
 
 /* ---------- Componentes reutilizables ---------- */
@@ -326,6 +447,44 @@ body {
     cursor: not-allowed;
 }
 
+/* Ghost small (Show meaning — sobre fondo claro) */
+.btn-ghost-small {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--primary-600);
+    background: transparent;
+    color: var(--primary-600);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-ghost-small::before {
+    content: "👁 ";
+    font-style: normal;
+}
+
+.btn-ghost-small:hover:not(:disabled) {
+    background: rgba(37, 99, 235, 0.08);
+    transform: translateY(-1px);
+}
+
+.btn-ghost-small:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.btn-ghost-small:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.btn-ghost-small:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .progress-track {
     height: 6px;
     background: var(--primary-100);
@@ -389,7 +548,7 @@ body {
 
 /* ---------- Practice feature ---------- */
 .practice {
-    padding: var(--s-2) 0 max(var(--s-4), env(safe-area-inset-bottom, 24px));
+    padding: var(--s-2) var(--s-2) max(var(--s-4), env(safe-area-inset-bottom, 24px));
     max-width: 420px;
     margin: 0 auto;
 }
@@ -424,7 +583,7 @@ body {
     flex-shrink: 0;
 }
 
-.practice-meaning-toggle.btn-link {
+.practice-meaning-toggle.btn-ghost-small {
     flex-shrink: 0;
 }
 
@@ -544,6 +703,42 @@ body {
     font-size: 12px;
     color: var(--text-2);
     margin-top: 2px;
+}
+
+.summary-hints-section {
+    margin-bottom: var(--s-3);
+    text-align: left;
+}
+
+.summary-hints-title {
+    margin: 0 0 var(--s-1);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+}
+
+.summary-hints-list {
+    max-height: 180px;
+    overflow-y: auto;
+    padding: var(--s-1) 0;
+}
+
+.summary-hints-row {
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-hints-row:last-child {
+    border-bottom: none;
+}
+
+.summary-hints-empty {
+    font-size: 14px;
+    color: var(--text-2);
+    font-style: italic;
+    max-height: none;
 }
 
 .summary-btn {

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
     <title>Verb Flow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,21 +15,39 @@
         <header class="hero">
             <div class="header-inner">
                 <span class="hero-brand">Verb Flow</span>
+                <button type="button" id="changeLevelBtn" class="hero-change-level hidden">Change level</button>
                 <button type="button" id="loginBtn" class="hero-login">Login</button>
             </div>
-            <div class="hero-top">
-                <h1 class="hero-title">Practice</h1>
-                <p class="hero-set">Set: <span id="setCount">0</span>/10</p>
-            </div>
-            <div class="hero-progress-outer">
-                <div class="hero-progress-wrap" id="progressWrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress">
-                    <div class="hero-progress-fill" id="progressBar"></div>
+            <div id="heroPracticeBlock" class="hero-practice-block hidden">
+                <div class="hero-practice">
+                    <div class="hero-title-row">
+                        <h1 class="hero-title">Practice</h1>
+                    </div>
+                    <div class="hero-meta-row">
+                        <span class="hero-set">Set: <span id="setCount">0</span>/5 · Verb: <span id="verbCount">0</span>/10</span>
+                    </div>
+                    <div class="hero-progress-outer">
+                        <div id="progressBar" class="hero-progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress">
+                            <div id="progressFill" class="hero-progress-fill"></div>
+                        </div>
+                        <span id="progressText" class="hero-progress-text">0%</span>
+                    </div>
                 </div>
-                <span id="progressText" class="hero-progress-text">0%</span>
             </div>
         </header>
         <main class="app-main">
-            <section id="practice" class="view">
+            <section id="levelSelect" class="view">
+                <div class="level-select">
+                    <h2 class="level-select-title">Choose your level</h2>
+                    <p class="level-select-subtitle">Pick a pack of 50 verbs. You'll practice in sets of 10.</p>
+                    <div class="level-select-grid">
+                        <button type="button" class="level-card" data-level="mandatory">Obligatoria <span class="level-card-sub">(50 verbos)</span></button>
+                        <button type="button" class="level-card" data-level="medium">Medio <span class="level-card-sub">(50 verbos)</span></button>
+                        <button type="button" class="level-card" data-level="hard">Difícil <span class="level-card-sub">(50 verbos)</span></button>
+                    </div>
+                </div>
+            </section>
+            <section id="practice" class="view hidden">
                 <h1>Practice</h1>
             </section>
         </main>

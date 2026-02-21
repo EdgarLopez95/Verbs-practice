@@ -24,7 +24,7 @@ export function renderPracticeView() {
     const meaningToggleBtn = document.createElement("button");
     meaningToggleBtn.type = "button";
     meaningToggleBtn.id = "meaningToggleBtn";
-    meaningToggleBtn.className = "practice-meaning-toggle btn-link";
+    meaningToggleBtn.className = "practice-meaning-toggle btn-ghost-small";
     meaningToggleBtn.textContent = "Show meaning";
     meaningToggleBtn.disabled = true;
     verbRow.append(cardValue, meaningToggleBtn);
@@ -45,10 +45,11 @@ export function renderPracticeView() {
     const pastInput = document.createElement("input");
     pastInput.type = "text";
     pastInput.id = "pastInput";
+    pastInput.name = "past";
     pastInput.className = "practice-input input";
-    pastInput.autocomplete = "off";
-    pastInput.autocapitalize = "none";
-    pastInput.autocorrect = "off";
+    pastInput.setAttribute("autocomplete", "off");
+    pastInput.setAttribute("autocapitalize", "none");
+    pastInput.setAttribute("autocorrect", "off");
     pastInput.spellcheck = false;
     pastInput.setAttribute("inputmode", "text");
     pastInput.disabled = true;
@@ -61,10 +62,11 @@ export function renderPracticeView() {
     const ppInput = document.createElement("input");
     ppInput.type = "text";
     ppInput.id = "ppInput";
+    ppInput.name = "pp";
     ppInput.className = "practice-input input";
-    ppInput.autocomplete = "off";
-    ppInput.autocapitalize = "none";
-    ppInput.autocorrect = "off";
+    ppInput.setAttribute("autocomplete", "off");
+    ppInput.setAttribute("autocapitalize", "none");
+    ppInput.setAttribute("autocorrect", "off");
     ppInput.spellcheck = false;
     ppInput.setAttribute("inputmode", "text");
     ppInput.disabled = true;
@@ -106,8 +108,9 @@ export function renderPracticeView() {
 export function getPracticeRefs() {
     return {
         setCount: document.getElementById("setCount"),
+        verbCount: document.getElementById("verbCount"),
         progressBar: document.getElementById("progressBar"),
-        progressWrap: document.getElementById("progressWrap"),
+        progressFill: document.getElementById("progressFill"),
         progressText: document.getElementById("progressText"),
         baseVerb: document.getElementById("baseVerb"),
         pastInput: document.getElementById("pastInput"),
@@ -121,15 +124,23 @@ export function getPracticeRefs() {
     };
 }
 
+function formatVerbLine(verb) {
+    const base = verb?.base ?? "—";
+    const past = Array.isArray(verb?.past) ? verb.past[0] : "";
+    const pp = Array.isArray(verb?.pp) ? verb.pp[0] : "";
+    return past && pp ? `${base} — ${past} / ${pp}` : base;
+}
+
 /**
- * Muestra la pantalla final del set (resumen).
- * Solo cuenta uso de pista: correct = sin pista, incorrect = usó pista.
- * @param {{ correct: number, incorrect: number, accuracy: number }} stats
+ * Muestra la pantalla final del set (resumen + lista de verbos con hint).
+ * @param {{ correct: number, incorrect: number, accuracy: number, hintUsedVerbs: Array }} stats
  * @param {() => void} onStartAnotherSet - callback al pulsar "Start another set"
  */
 export function renderFinalScreen(stats, onStartAnotherSet) {
     const section = document.getElementById("practice");
     if (!section) return;
+
+    const { correct, incorrect, accuracy, hintUsedVerbs = [] } = stats;
 
     section.innerHTML = "";
     const container = document.createElement("div");
@@ -154,18 +165,40 @@ export function renderFinalScreen(stats, onStartAnotherSet) {
     statsGrid.className = "summary-stats-grid";
     statsGrid.innerHTML = `
         <div class="summary-stat-chip">
-            <span class="summary-stat-value">${stats.correct}/10</span>
+            <span class="summary-stat-value">${correct}/10</span>
             <span class="summary-stat-label">Correct</span>
         </div>
         <div class="summary-stat-chip">
-            <span class="summary-stat-value">${stats.incorrect}/10</span>
-            <span class="summary-stat-label">Incorrect (used hint)</span>
+            <span class="summary-stat-value">${incorrect}/10</span>
+            <span class="summary-stat-label">Hints used</span>
         </div>
         <div class="summary-stat-chip summary-stat-chip-full">
-            <span class="summary-stat-value">${stats.accuracy}%</span>
+            <span class="summary-stat-value">${accuracy}%</span>
             <span class="summary-stat-label">Accuracy</span>
         </div>
     `;
+
+    const listSection = document.createElement("div");
+    listSection.className = "summary-hints-section";
+    const listTitle = document.createElement("h3");
+    listTitle.className = "summary-hints-title";
+    listTitle.textContent = "Hints used on:";
+    listSection.appendChild(listTitle);
+
+    const listContent = document.createElement("div");
+    listContent.className = "summary-hints-list";
+    if (hintUsedVerbs.length === 0) {
+        listContent.className = "summary-hints-list summary-hints-empty";
+        listContent.textContent = "Perfect run — no hints used 🎉";
+    } else {
+        hintUsedVerbs.forEach((verb) => {
+            const row = document.createElement("div");
+            row.className = "summary-hints-row";
+            row.textContent = formatVerbLine(verb);
+            listContent.appendChild(row);
+        });
+    }
+    listSection.appendChild(listContent);
 
     const btn = document.createElement("button");
     btn.type = "button";
@@ -173,7 +206,7 @@ export function renderFinalScreen(stats, onStartAnotherSet) {
     btn.textContent = "Start another set";
     btn.addEventListener("click", onStartAnotherSet);
 
-    card.append(title, subtitle, statsGrid, btn);
+    card.append(title, subtitle, statsGrid, listSection, btn);
     container.append(badge, card);
     section.appendChild(container);
 }
