@@ -1,6 +1,5 @@
 import { loadVerbs, buildPools, buildLevelState } from "../services/verbsService.js";
 import { initPractice } from "../features/practice/index.js";
-import { initLoginModal } from "../shared/components/modal.js";
 
 const LEVEL_KEYS = ["mandatory", "medium", "hard"];
 
@@ -19,22 +18,36 @@ export function getActiveLevelKey() {
 
 let lastPools = null;
 
-function showLevelSelect() {
-    document.getElementById("levelSelect").classList.remove("hidden");
-    document.getElementById("practice").classList.add("hidden");
+const VIEW_IDS = ["levelSelect", "practice", "verbsList"];
+
+/**
+ * Muestra solo la vista indicada. No toca el header; solo cambia la vista del main.
+ * heroPracticeBlock se muestra solo cuando viewId === "practice".
+ */
+function showView(viewId) {
     const heroBlock = document.getElementById("heroPracticeBlock");
-    const changeBtn = document.getElementById("changeLevelBtn");
-    if (heroBlock) heroBlock.classList.add("hidden");
-    if (changeBtn) changeBtn.classList.add("hidden");
+    VIEW_IDS.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle("hidden", id !== viewId);
+    });
+    if (heroBlock) heroBlock.classList.toggle("hidden", viewId !== "practice");
+
+    if (viewId === "verbsList") {
+        const wrap = document.getElementById("verbsListTableWrap");
+        if (wrap) wrap.scrollTop = 0;
+    }
+}
+
+function showLevelSelect() {
+    showView("levelSelect");
 }
 
 function showPractice() {
-    document.getElementById("levelSelect").classList.add("hidden");
-    document.getElementById("practice").classList.remove("hidden");
-    const heroBlock = document.getElementById("heroPracticeBlock");
-    const changeBtn = document.getElementById("changeLevelBtn");
-    if (heroBlock) heroBlock.classList.remove("hidden");
-    if (changeBtn) changeBtn.classList.remove("hidden");
+    showView("practice");
+}
+
+function showVerbsList() {
+    showView("verbsList");
 }
 
 async function startPracticeForLevel(levelKey) {
@@ -86,9 +99,38 @@ function onChangeLevel() {
     showLevelSelect();
 }
 
-function initGuestNavigation() {
+function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+async function renderVerbsTable(verbs) {
+    const tbody = document.getElementById("verbsTableBody");
+    if (!tbody) return;
+    if (!verbs || verbs.length === 0) {
+        tbody.innerHTML = "<tr><td colspan=\"3\">No verbs loaded.</td></tr>";
+        return;
+    }
+    const pastStr = (v) => (Array.isArray(v.past) ? v.past.join(" / ") : String(v.past ?? ""));
+    const ppStr = (v) => (Array.isArray(v.pp) ? v.pp.join(" / ") : String(v.pp ?? ""));
+    tbody.innerHTML = verbs
+        .map(
+            (v) =>
+                `<tr><td>${escapeHtml(v.base)}</td><td>${escapeHtml(pastStr(v))}</td><td>${escapeHtml(ppStr(v))}</td></tr>`
+        )
+        .join("");
+}
+
+async function loadAndRenderVerbsTable() {
+    const verbs = await loadVerbs();
+    await renderVerbsTable(verbs);
+}
+
+function initNavigation() {
     const levelCards = document.querySelectorAll(".level-card[data-level]");
     const changeLevelBtn = document.getElementById("changeLevelBtn");
+    const verbsListBtn = document.getElementById("verbsListBtn");
 
     levelCards.forEach((btn) => {
         btn.addEventListener("click", async (e) => {
@@ -100,13 +142,24 @@ function initGuestNavigation() {
         });
     });
 
-    if (changeLevelBtn) {
-        changeLevelBtn.addEventListener("click", onChangeLevel);
+    if (changeLevelBtn) changeLevelBtn.addEventListener("click", onChangeLevel);
+
+    if (verbsListBtn) {
+        verbsListBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            await loadAndRenderVerbsTable();
+            showVerbsList();
+        });
+    }
+
+    const verbsListBackBtn = document.getElementById("verbsListBackBtn");
+    if (verbsListBackBtn) {
+        verbsListBackBtn.addEventListener("click", () => showLevelSelect());
     }
 }
 
-initLoginModal();
-initGuestNavigation();
+initNavigation();
 showLevelSelect();
 
 loadVerbs().catch((err) => console.error("Dataset load failed", err));

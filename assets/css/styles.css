@@ -40,8 +40,8 @@
     --level-hard-soft: rgba(220, 38, 38, 0.12);
     --level-hard-border: rgba(220, 38, 38, 0.4);
 
-    /* Altura del header (ajustar si el hero mide distinto) */
-    --hero-h: 96px;
+    /* Altura del header compacto */
+    --hero-h: 64px;
 }
 
 *,
@@ -62,7 +62,7 @@ body {
     line-height: 1.5;
     color: var(--text);
     background: #F1F5F9;
-    min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
 }
 
@@ -71,25 +71,26 @@ body {
 }
 
 #app {
+    height: 100%;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    height: 100%;
+    overflow: hidden;
 }
 
-/* ---------- Hero (header premium) ---------- */
+/* ---------- Header (solo branding) ---------- */
 .hero {
+    flex: 0 0 auto;
     position: sticky;
     top: 0;
     z-index: 50;
-    min-height: var(--hero-h);
-    flex-shrink: 0;
     background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
     color: #fff;
-    padding: 22px 20px 10px;
-    border-bottom-left-radius: 32px;
-    border-bottom-right-radius: 32px;
-    box-shadow: 0 10px 30px rgba(29, 78, 216, 0.2);
+    padding: 12px var(--s-2);
+    padding-bottom: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.2);
 }
 
 .hero .header-inner {
@@ -98,7 +99,7 @@ body {
     padding: 0 var(--s-2);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: 40px;
 }
 
@@ -107,43 +108,6 @@ body {
     font-weight: 600;
     letter-spacing: -0.01em;
     color: #fff;
-}
-
-.hero-login {
-    padding: 8px 14px;
-    min-height: 44px;
-    font-size: 14px;
-    font-family: inherit;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    cursor: pointer;
-}
-
-.hero-login.icon-btn {
-    padding: 0;
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    min-height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-login.icon-btn svg {
-    display: block;
-}
-
-.hero-login:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.hero-login:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
 }
 
 /* Bloque Practice: título, meta (Set/Verb), barra de progreso */
@@ -243,11 +207,13 @@ body {
     display: none;
 }
 
-.hero-practice-block {
-    margin-top: 8px;
+/* Bloque de Practice dentro del hero (mismo hero, solo visible en vista Practice) */
+#heroPracticeBlock {
+   
+    color: #fff;
 }
 
-.hero-practice-block.hidden {
+#heroPracticeBlock.hidden {
     display: none;
 }
 
@@ -273,25 +239,21 @@ body {
     outline-offset: 2px;
 }
 
-.hero-change-level.hidden {
-    display: none;
-}
-
 .app-main {
     flex: 1;
     min-height: 0;
-    overflow: hidden;
-    padding: var(--s-2);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    padding: 16px;
 }
 
-/* Vista que ocupa el alto disponible (sin scroll en level select) */
+/* Vista: ocupa espacio disponible */
 .view {
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    min-height: 0;
 }
 
 .view.hidden {
@@ -303,34 +265,120 @@ body {
     overflow: auto;
 }
 
-/* ---------- Level Select (guest): full-height, sin scroll ---------- */
+/* Verbs list view: scroll solo dentro del tableWrap */
+#verbsList.view {
+    overflow: hidden;
+}
+
+.verbs-list-screen {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.verbs-list-head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2);
+    margin-bottom: var(--s-2);
+}
+
+.verbs-list-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.verbs-list-back {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--primary-600);
+    background: var(--primary-50);
+    border: 1px solid var(--primary-100);
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.verbs-list-back:hover {
+    background: var(--primary-100);
+}
+
+.verbs-list-tableWrap {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.verbs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.verbs-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 1;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 12px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-2);
+}
+
+.verbs-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 14px;
+    color: var(--text);
+}
+
+.verbs-table th:first-child,
+.verbs-table td:first-child {
+    font-weight: 600;
+}
+
+/* ---------- Level Select: full-height, centrado ---------- */
+#levelSelect.view {
+    align-items: center;
+}
+
 .level-screen {
     height: 100%;
     min-height: 0;
     display: flex;
     flex-direction: column;
-    padding: clamp(10px, 2vh, 16px);
-    gap: clamp(10px, 2vh, 16px);
+    padding: clamp(8px, 1.5vh, 12px);
+    gap: clamp(8px, 1.5vh, 12px);
     max-width: 520px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* Hero Motivation Zone */
+/* Bloque motivacional minimal */
 .level-hero {
     flex-shrink: 0;
     display: flex;
     align-items: flex-start;
-    gap: var(--s-2);
-    padding: var(--s-2);
+    gap: var(--s-1_5);
+    padding: var(--s-1_5) var(--s-2);
     background: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(15, 23, 42, 0.08);
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
 }
 
 .level-hero__icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1;
     flex-shrink: 0;
 }
@@ -340,28 +388,37 @@ body {
 }
 
 .level-hero__headline {
-    margin: 0 0 4px;
-    font-size: 0.9375rem;
+    margin: 0 0 8px;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--text);
     line-height: 1.25;
 }
 
-.level-hero__sub {
-    margin: 0 0 var(--s-1);
-    font-size: 0.8125rem;
-    color: var(--text-2);
-    line-height: 1.4;
-}
-
-.level-hero__badge {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 11px;
+.level-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-weight: 600;
+    font-family: inherit;
     color: var(--text-2);
     background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.1);
     border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.level-hero__btn:hover {
+    background: rgba(15, 23, 42, 0.1);
+    border-color: rgba(15, 23, 42, 0.15);
+}
+
+.level-hero__btn:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
 }
 
 .level-intro {
@@ -369,18 +426,11 @@ body {
 }
 
 .level-intro-title {
-    margin: 0 0 var(--s-1);
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.35rem;
     font-weight: 700;
     line-height: 1.2;
     color: var(--text);
-}
-
-.level-intro-subtitle {
-    margin: 0;
-    font-size: 15px;
-    color: var(--text-2);
-    line-height: 1.5;
 }
 
 /* Contenedor de cards: reparte el alto restante entre las 3 + stagger */
@@ -595,16 +645,10 @@ body {
 /* Pantallas con poco alto (móvil): reducir tipografías y evitar corte */
 @media (max-height: 700px) {
     .level-hero__headline {
-        font-size: 0.875rem;
-    }
-    .level-hero__sub {
-        font-size: 0.75rem;
+        font-size: 0.8125rem;
     }
     .level-intro-title {
-        font-size: 1.25rem;
-    }
-    .level-intro-subtitle {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
     }
     .level-card__title {
         font-size: 1.25rem;
@@ -625,7 +669,7 @@ body {
     background: var(--surface);
     border: none;
     border-radius: 20px;
-    padding: 14px;
+    padding: 20px;
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     transition: opacity 150ms ease, transform 150ms ease;
 }
@@ -883,8 +927,8 @@ body {
 
 /* ---------- Practice feature ---------- */
 .practice {
-    padding: var(--s-2) var(--s-2) max(var(--s-4), env(safe-area-inset-bottom, 24px));
-    max-width: 420px;
+    width: 100%;
+    max-width: 640px;
     margin: 0 auto;
 }
 
@@ -896,12 +940,6 @@ body {
     margin-bottom: var(--s-2);
 }
 
-.practice-card-label {
-    display: block;
-    font-size: 13px;
-    color: var(--text-2);
-    margin-bottom: 6px;
-}
 
 .verb-row {
     display: flex;
