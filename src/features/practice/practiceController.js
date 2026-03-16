@@ -162,7 +162,24 @@ function setRowFeedback(row, message, type) {
     if (type === "error") row.feedbackEl.classList.add("feedback-error");
 }
 
-/** Focus Past input of the next pending row; skips completed rows. */
+/**
+ * Scroll suave para dejar la fila en una zona cómoda del viewport (solo desktop).
+ * Solo desplaza si la fila queda fuera o muy pegada al borde.
+ */
+function scrollRowIntoComfortView(rowEl) {
+    if (!rowEl || !isDesktop()) return;
+    const rect = rowEl.getBoundingClientRect();
+    const marginTop = 120;
+    const marginBottom = 100;
+    const viewportHeight = window.innerHeight;
+    if (rect.top < marginTop) {
+        window.scrollBy({ top: rect.top - marginTop, behavior: "smooth" });
+    } else if (rect.bottom > viewportHeight - marginBottom) {
+        window.scrollBy({ top: rect.bottom - (viewportHeight - marginBottom), behavior: "smooth" });
+    }
+}
+
+/** Focus Past input of the next pending row; skips completed rows. En desktop hace scroll suave si hace falta. */
 function focusNextPendingRow(desktopRefs) {
     if (!desktopRefs?.rows?.length) return;
     for (let i = 0; i < desktopRefs.rows.length; i++) {
@@ -170,6 +187,7 @@ function focusNextPendingRow(desktopRefs) {
             const next = desktopRefs.rows[i];
             if (next.pastInput && !next.pastInput.disabled) {
                 next.pastInput.focus();
+                requestAnimationFrame(() => scrollRowIntoComfortView(next.rowEl));
                 return;
             }
         }
