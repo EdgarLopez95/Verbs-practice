@@ -172,3 +172,22 @@ export function advanceVerb(levelState) {
         }
     }
 }
+
+/**
+ * Avanza el set completo (equivalente a 10 advanceVerb). Útil para vista desktop
+ * cuando se completan las 10 filas de una vez.
+ */
+export function advanceSet(levelState) {
+    if (!levelState) return;
+    levelState.verbIndex = 10;
+    levelState.setIndex++;
+    levelState.verbIndex = 0;
+    const numSets = levelState.sets?.length ?? 0;
+    if (levelState.setIndex >= numSets || levelState.setIndex >= 5) {
+        const allVerbs = levelState.sets.flat();
+        if (allVerbs.length > 0) {
+            levelState.sets = chunk(shuffle(allVerbs), 10);
+        }
+        levelState.setIndex = 0;
+    }
+}

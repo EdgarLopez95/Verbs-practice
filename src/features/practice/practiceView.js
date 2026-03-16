@@ -1,5 +1,8 @@
+const SET_SIZE = 10;
+
 /**
  * Render de la UI de práctica y referencias DOM.
+ * Genera markup dual: .practice-mobile (visible en móvil) y .practice-desktop (visible en desktop vía CSS).
  */
 export function renderPracticeView() {
     const section = document.getElementById("practice");
@@ -10,12 +13,14 @@ export function renderPracticeView() {
     const container = document.createElement("div");
     container.className = "practice";
 
-    // Verb card: Base form | row (baseVerb + meaningToggleBtn) | meaningContainer debajo
+    // --- Bloque móvil: card + inputs + actions (sin cambios de estructura/IDs)
+    const mobileWrap = document.createElement("div");
+    mobileWrap.className = "practice-mobile";
+
     const card = document.createElement("div");
     card.className = "practice-card card";
     const cardLabel = document.createElement("span");
     cardLabel.className = "practice-card-label";
-    //cardLabel.textContent = "Base form";
     const verbRow = document.createElement("div");
     verbRow.className = "verb-row";
     const cardValue = document.createElement("p");
@@ -35,7 +40,6 @@ export function renderPracticeView() {
     meaningContainer.setAttribute("aria-hidden", "true");
     card.append(cardLabel, verbRow, meaningContainer);
 
-    // Inputs
     const inputsWrap = document.createElement("div");
     inputsWrap.className = "practice-inputs";
 
@@ -75,7 +79,6 @@ export function renderPracticeView() {
 
     inputsWrap.append(pastLabel, pastInput, ppLabel, ppInput);
 
-    // Botones: primaryBtn "Start set", hintBtn "Show answer (2s)" disabled
     const actions = document.createElement("div");
     actions.className = "practice-actions";
     const primaryBtn = document.createElement("button");
@@ -91,19 +94,100 @@ export function renderPracticeView() {
     hintBtn.disabled = true;
     actions.append(primaryBtn, hintBtn);
 
-    // Feedback
     const feedback = document.createElement("div");
     feedback.className = "practice-feedback";
     feedback.id = "feedback";
     feedback.setAttribute("aria-live", "polite");
     feedback.setAttribute("aria-atomic", "true");
 
-    container.append(card, inputsWrap, actions, feedback);
+    mobileWrap.append(card, inputsWrap, actions, feedback);
+    container.appendChild(mobileWrap);
+
+    // --- Bloque desktop: tabla/lista con 10 filas (oculto por defecto, visible en @media 1024px)
+    const desktopWrap = document.createElement("div");
+    desktopWrap.className = "practice-desktop";
+
+    const desktopInner = document.createElement("div");
+    desktopInner.className = "practice-desktop-inner";
+
+    const table = document.createElement("div");
+    table.className = "practice-desk-table";
+    table.setAttribute("role", "table");
+    table.setAttribute("aria-label", "Practice set");
+
+    const headerRow = document.createElement("div");
+    headerRow.className = "practice-desk-row practice-desk-row--head";
+    headerRow.setAttribute("role", "row");
+    headerRow.innerHTML = `
+        <span class="practice-desk-cell practice-desk-base" role="columnheader">Verb</span>
+        <span class="practice-desk-cell practice-desk-cell--past" role="columnheader">Past</span>
+        <span class="practice-desk-cell practice-desk-cell--pp" role="columnheader">Past participle</span>
+        <span class="practice-desk-cell practice-desk-cell--actions" role="columnheader">Actions</span>
+    `;
+    table.appendChild(headerRow);
+
+    for (let i = 0; i < SET_SIZE; i++) {
+        const row = document.createElement("div");
+        row.className = "practice-desk-row";
+        row.setAttribute("role", "row");
+        row.dataset.rowIndex = String(i);
+
+        const baseCell = document.createElement("span");
+        baseCell.className = "practice-desk-cell practice-desk-base";
+        baseCell.setAttribute("role", "cell");
+        baseCell.textContent = "—";
+
+        const pastCell = document.createElement("span");
+        pastCell.className = "practice-desk-cell practice-desk-cell--input";
+        pastCell.setAttribute("role", "cell");
+        const pastInputDesk = document.createElement("input");
+        pastInputDesk.type = "text";
+        pastInputDesk.className = "practice-input input practice-desk-past-input";
+        pastInputDesk.setAttribute("autocomplete", "off");
+        pastInputDesk.setAttribute("autocapitalize", "none");
+        pastInputDesk.setAttribute("aria-label", `Past form row ${i + 1}`);
+        pastCell.appendChild(pastInputDesk);
+
+        const ppCell = document.createElement("span");
+        ppCell.className = "practice-desk-cell practice-desk-cell--input";
+        ppCell.setAttribute("role", "cell");
+        const ppInputDesk = document.createElement("input");
+        ppInputDesk.type = "text";
+        ppInputDesk.className = "practice-input input practice-desk-pp-input";
+        ppInputDesk.setAttribute("autocomplete", "off");
+        ppInputDesk.setAttribute("autocapitalize", "none");
+        ppInputDesk.setAttribute("aria-label", `Past participle row ${i + 1}`);
+        ppCell.appendChild(ppInputDesk);
+
+        const actionsCell = document.createElement("span");
+        actionsCell.className = "practice-desk-cell practice-desk-cell--actions";
+        actionsCell.setAttribute("role", "cell");
+        const hintBtnDesk = document.createElement("button");
+        hintBtnDesk.type = "button";
+        hintBtnDesk.className = "practice-btn btn-secondary practice-desk-hint-btn";
+        hintBtnDesk.textContent = "Show answer";
+        const checkBtnDesk = document.createElement("button");
+        checkBtnDesk.type = "button";
+        checkBtnDesk.className = "practice-btn btn-primary practice-desk-check-btn";
+        checkBtnDesk.textContent = "Check";
+        const feedbackDesk = document.createElement("span");
+        feedbackDesk.className = "practice-desk-feedback";
+        feedbackDesk.setAttribute("aria-live", "polite");
+        actionsCell.append(hintBtnDesk, checkBtnDesk, feedbackDesk);
+
+        row.append(baseCell, pastCell, ppCell, actionsCell);
+        table.appendChild(row);
+    }
+
+    desktopInner.appendChild(table);
+    desktopWrap.appendChild(desktopInner);
+    container.appendChild(desktopWrap);
+
     section.appendChild(container);
 }
 
 /**
- * Retorna referencias a los elementos de la UI de práctica.
+ * Retorna referencias a los elementos de la UI de práctica (móvil).
  * Debe llamarse después de renderPracticeView().
  */
 export function getPracticeRefs() {
@@ -121,8 +205,32 @@ export function getPracticeRefs() {
         feedback: document.getElementById("feedback"),
         meaningToggleBtn: document.getElementById("meaningToggleBtn"),
         meaningContainer: document.getElementById("meaningContainer"),
-        card: document.querySelector(".practice-card"),
+        card: document.querySelector(".practice-mobile .practice-card"),
     };
+}
+
+/**
+ * Retorna referencias a la UI de práctica desktop (tabla de filas).
+ * Debe llamarse después de renderPracticeView() cuando matchMedia('(min-width: 1024px)').matches.
+ */
+export function getPracticeRefsDesktop() {
+    const container = document.querySelector(".practice-desktop");
+    const inner = document.querySelector(".practice-desktop-inner");
+    const rows = [];
+    const rowEls = container?.querySelectorAll(".practice-desk-row:not(.practice-desk-row--head)") ?? [];
+    for (let i = 0; i < rowEls.length; i++) {
+        const rowEl = rowEls[i];
+        rows.push({
+            baseEl: rowEl.querySelector(".practice-desk-base"),
+            pastInput: rowEl.querySelector(".practice-desk-past-input"),
+            ppInput: rowEl.querySelector(".practice-desk-pp-input"),
+            hintBtn: rowEl.querySelector(".practice-desk-hint-btn"),
+            checkBtn: rowEl.querySelector(".practice-desk-check-btn"),
+            feedbackEl: rowEl.querySelector(".practice-desk-feedback"),
+            rowEl,
+        });
+    }
+    return { container, inner, rows };
 }
 
 function formatVerbLine(verb) {

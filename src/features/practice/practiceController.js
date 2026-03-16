@@ -2,17 +2,27 @@ import {
     getCurrentSet,
     getCurrentVerb,
     advanceVerb,
+    advanceSet,
 } from "../../services/verbsService.js";
 import { getActiveLevelKey, levelsState } from "../../app/bootstrap.js";
-import { getPracticeRefs, renderPracticeView, renderFinalScreen } from "./practiceView.js";
+import { getPracticeRefs, getPracticeRefsDesktop, renderPracticeView, renderFinalScreen } from "./practiceView.js";
 
 const SET_SIZE = 10;
 const AUTO_ADVANCE_MS = 700;
+const DESKTOP_BREAKPOINT = 1024;
+
+function isDesktop() {
+    return window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches;
+}
 
 let currentSet = [];
 let hintUsed = [];
 let correctCount = 0;
 let hintCount = 0;
+let rowDone = [];
+let resizeListenerAttached = false;
+/** true cuando solo se pulsó Shift (para atajo Shift = Show answer sin activar al escribir mayúsculas) */
+let shiftOnlyPressed = false;
 
 function resetSetState() {
     currentSet = [];
@@ -37,19 +47,18 @@ function getLevelState() {
 }
 
 export function initPracticeController() {
-    const refs = getPracticeRefs();
-    if (!refs.primaryBtn || !refs.feedback) return;
-
     const levelState = getLevelState();
     if (!levelState) {
-        refs.feedback.textContent = "Select a level first.";
+        const refs = getPracticeRefs();
+        if (refs.feedback) refs.feedback.textContent = "Select a level first.";
         return;
     }
 
     const setsLength = levelState.sets?.length ?? 0;
     if (setsLength !== 5) {
         console.warn("[VF] expected 5 sets but got", setsLength);
-        refs.feedback.textContent = "Dataset invalid.";
+        const refs = getPracticeRefs();
+        if (refs.feedback) refs.feedback.textContent = "Dataset invalid.";
         return;
     }
 
@@ -61,9 +70,23 @@ export function initPracticeController() {
             verbIndex: levelState.verbIndex,
             setsLength: levelState.sets?.length,
         });
-        refs.feedback.textContent = "Could not load verbs.";
+        const refs = getPracticeRefs();
+        if (refs.feedback) refs.feedback.textContent = "Could not load verbs.";
         return;
     }
+
+    if (isDesktop()) {
+        initPracticeControllerDesktop(levelState);
+    } else {
+        initPracticeControllerMobile(levelState);
+    }
+
+    attachResizeListenerIfNeeded();
+}
+
+function initPracticeControllerMobile(levelState) {
+    const refs = getPracticeRefs();
+    if (!refs.primaryBtn || !refs.feedback) return;
 
     resetSetState();
     refs.primaryBtn.textContent = "Check";
@@ -72,8 +95,217 @@ export function initPracticeController() {
     refs.feedback.classList.remove("feedback-success", "feedback-error");
     setInputsAndHintEnabled(refs, true);
     renderCurrentVerb(refs);
-    /* No auto-focus al entrar a Practice para no abrir teclado en móvil */
     wirePracticeEvents();
+}
+
+function initPracticeControllerDesktop(levelState) {
+    const desktopRefs = getPracticeRefsDesktop();
+    if (!desktopRefs.container || !desktopRefs.rows.length) return;
+
+    resetSetState();
+    rowDone = Array(SET_SIZE).fill(false);
+
+    currentSet = getCurrentSet(levelState);
+    for (let i = 0; i < SET_SIZE && i < desktopRefs.rows.length; i++) {
+        const row = desktopRefs.rows[i];
+        const verb = currentSet[i];
+        if (row.baseEl) row.baseEl.textContent = verb?.base ?? "—";
+        if (row.pastInput) row.pastInput.value = "";
+        if (row.ppInput) row.ppInput.value = "";
+        if (row.feedbackEl) row.feedbackEl.textContent = "";
+        if (row.pastInput) row.pastInput.classList.remove("is-success", "is-error", "hint-active");
+        if (row.ppInput) row.ppInput.classList.remove("is-success", "is-error", "hint-active");
+        row.pastInput.disabled = false;
+        row.ppInput.disabled = false;
+        row.hintBtn.disabled = false;
+        row.checkBtn.disabled = false;
+        if (row.rowEl) row.rowEl.classList.remove("practice-desk-row--done", "practice-desk-row--error");
+    }
+
+    updateHeroDesktop(desktopRefs);
+    wirePracticeEventsDesktop(desktopRefs, levelState);
+}
+
+function updateHeroDesktop(desktopRefs) {
+    const refs = getPracticeRefs();
+    const levelState = getLevelState();
+    if (!levelState || !refs) return;
+    const setIndex = levelState.setIndex;
+    const doneCount = rowDone.filter(Boolean).length;
+    const pct = Math.round((doneCount / SET_SIZE) * 100);
+    if (refs.setCount) refs.setCount.textContent = String(setIndex + 1);
+    if (refs.progressFill) refs.progressFill.style.width = `${pct}%`;
+    if (refs.progressBar) refs.progressBar.setAttribute("aria-valuenow", String(pct));
+    if (refs.progressText) refs.progressText.textContent = `${pct}%`;
+}
+
+function setRowFeedback(row, message, type) {
+    if (!row.feedbackEl) return;
+    row.feedbackEl.textContent = message;
+    row.feedbackEl.classList.remove("feedback-success", "feedback-error");
+    if (type === "success") row.feedbackEl.classList.add("feedback-success");
+    if (type === "error") row.feedbackEl.classList.add("feedback-error");
+}
+
+/** Focus Past input of the next pending row; skips completed rows. */
+function focusNextPendingRow(desktopRefs) {
+    if (!desktopRefs?.rows?.length) return;
+    for (let i = 0; i < desktopRefs.rows.length; i++) {
+        if (!rowDone[i]) {
+            const next = desktopRefs.rows[i];
+            if (next.pastInput && !next.pastInput.disabled) {
+                next.pastInput.focus();
+                return;
+            }
+        }
+    }
+}
+
+function onCheckDesktop(rowIndex, desktopRefs, levelState) {
+    const row = desktopRefs.rows[rowIndex];
+    const verb = currentSet[rowIndex];
+    if (!verb || !row || rowDone[rowIndex]) return;
+
+    const pastVal = row.pastInput?.value ?? "";
+    const ppVal = row.ppInput?.value ?? "";
+    const pastOk = matchesForm(pastVal, verb.past ?? []);
+    const ppOk = matchesForm(ppVal, verb.pp ?? []);
+
+    if (pastOk && ppOk) {
+        if (!hintUsed[rowIndex]) correctCount++;
+        rowDone[rowIndex] = true;
+        setRowFeedback(row, hintUsed[rowIndex] ? "Done (with hint)" : "Correct ✓", hintUsed[rowIndex] ? "error" : "success");
+        row.pastInput.classList.add("is-success");
+        row.ppInput.classList.add("is-success");
+        row.pastInput.disabled = true;
+        row.ppInput.disabled = true;
+        row.hintBtn.disabled = true;
+        row.checkBtn.disabled = true;
+        if (row.rowEl) row.rowEl.classList.add("practice-desk-row--done");
+
+        updateHeroDesktop(desktopRefs);
+
+        const allDone = rowDone.every(Boolean);
+        if (allDone) {
+            advanceSet(levelState);
+            const incorrect = hintCount;
+            const accuracy = Math.round(((SET_SIZE - incorrect) / SET_SIZE) * 100);
+            const hintUsedVerbs = currentSet.filter((_, i) => hintUsed[i]);
+            renderFinalScreen(
+                {
+                    correct: SET_SIZE - incorrect,
+                    incorrect: hintCount,
+                    accuracy,
+                    hintUsedVerbs,
+                },
+                () => {
+                    currentSet = getCurrentSet(levelState);
+                    resetSetState();
+                    renderPracticeView();
+                    initPracticeController();
+                }
+            );
+        } else {
+            setTimeout(() => focusNextPendingRow(desktopRefs), 0);
+        }
+    } else {
+        setRowFeedback(row, "Not quite. Try again.", "error");
+        row.pastInput.classList.toggle("is-error", !pastOk);
+        row.ppInput.classList.toggle("is-error", !ppOk);
+        if (row.rowEl) row.rowEl.classList.add("practice-desk-row--error");
+    }
+}
+
+function onShowAnswerDesktop(rowIndex, desktopRefs) {
+    const row = desktopRefs.rows[rowIndex];
+    const verb = currentSet[rowIndex];
+    if (!verb || !row || rowDone[rowIndex]) return;
+
+    if (!hintUsed[rowIndex]) hintCount++;
+    hintUsed[rowIndex] = true;
+
+    const pastVal = verb.past?.[0] ?? "";
+    const ppVal = verb.pp?.[0] ?? "";
+    row.pastInput.value = pastVal;
+    row.ppInput.value = ppVal;
+    row.pastInput.classList.add("hint-active");
+    row.ppInput.classList.add("hint-active");
+    row.hintBtn.disabled = true;
+    setRowFeedback(row, "Answer revealed. Try to remember for next time.", "error");
+
+    setTimeout(() => {
+        if (rowDone[rowIndex]) return;
+        row.pastInput.value = "";
+        row.ppInput.value = "";
+        row.pastInput.classList.remove("hint-active");
+        row.ppInput.classList.remove("hint-active");
+        setRowFeedback(row, "Try again.", "error");
+        row.pastInput?.focus();
+    }, 2000);
+}
+
+/**
+ * Desktop keyboard: Enter = Check; Shift+Enter = Show answer; Shift solo (al soltar) = Show answer.
+ */
+function handleDesktopKeydown(rowIndex, desktopRefs, levelState) {
+    return function (e) {
+        if (e.key === "Shift") {
+            shiftOnlyPressed = true;
+            return;
+        }
+        if (e.key === "Enter") {
+            e.preventDefault();
+            shiftOnlyPressed = false;
+            if (e.shiftKey) {
+                onShowAnswerDesktop(rowIndex, desktopRefs);
+            } else {
+                onCheckDesktop(rowIndex, desktopRefs, levelState);
+            }
+            return;
+        }
+        shiftOnlyPressed = false;
+    };
+}
+
+function handleDesktopKeyup(rowIndex, desktopRefs) {
+    return function (e) {
+        if (e.key === "Shift" && shiftOnlyPressed) {
+            shiftOnlyPressed = false;
+            onShowAnswerDesktop(rowIndex, desktopRefs);
+        }
+    };
+}
+
+function wirePracticeEventsDesktop(desktopRefs, levelState) {
+    for (let i = 0; i < desktopRefs.rows.length; i++) {
+        const row = desktopRefs.rows[i];
+        const idx = i;
+        const onKeydown = handleDesktopKeydown(idx, desktopRefs, levelState);
+        const onKeyup = handleDesktopKeyup(idx, desktopRefs);
+        row.checkBtn?.addEventListener("click", () => onCheckDesktop(idx, desktopRefs, levelState));
+        row.hintBtn?.addEventListener("click", () => onShowAnswerDesktop(idx, desktopRefs));
+        row.pastInput?.addEventListener("keydown", onKeydown);
+        row.ppInput?.addEventListener("keydown", onKeydown);
+        row.pastInput?.addEventListener("keyup", onKeyup);
+        row.ppInput?.addEventListener("keyup", onKeyup);
+    }
+}
+
+function attachResizeListenerIfNeeded() {
+    if (resizeListenerAttached) return;
+    let lastDesktop = isDesktop();
+    window.addEventListener("resize", () => {
+        const nowDesktop = isDesktop();
+        if (nowDesktop !== lastDesktop) {
+            lastDesktop = nowDesktop;
+            const section = document.getElementById("practice");
+            if (section && !section.classList.contains("hidden")) {
+                renderPracticeView();
+                initPracticeController();
+            }
+        }
+    });
+    resizeListenerAttached = true;
 }
 
 function updateHero(refs) {
@@ -175,8 +407,9 @@ function onCheck() {
     const ppOk = matchesForm(ppVal, currentVerb.pp ?? []);
 
     if (pastOk && ppOk) {
-        correctCount++;
-        setFeedback(refs, "Correct ✓", "success");
+        const idx = levelState.verbIndex;
+        if (!hintUsed[idx]) correctCount++;
+        setFeedback(refs, hintUsed[idx] ? "Done (with hint)" : "Correct ✓", hintUsed[idx] ? "error" : "success");
         if (refs.pastInput) refs.pastInput.classList.add("is-success");
         if (refs.ppInput) refs.ppInput.classList.add("is-success");
         setInputsAndHintEnabled(refs, false);
@@ -274,8 +507,8 @@ function onShowAnswer() {
     if (!currentVerb) return;
 
     const idx = levelState.verbIndex;
+    if (!hintUsed[idx]) hintCount++;
     hintUsed[idx] = true;
-    hintCount++;
 
     const pastVal = currentVerb.past?.[0] ?? "";
     const ppVal = currentVerb.pp?.[0] ?? "";
@@ -307,9 +540,41 @@ function onShowAnswer() {
     }
 }
 
+/**
+ * Mobile keyboard: Enter = Check; Shift+Enter = Show answer; Shift solo (al soltar) = Show answer.
+ */
+function handleMobileKeydown(e) {
+    if (e.key === "Shift") {
+        shiftOnlyPressed = true;
+        return;
+    }
+    if (e.key === "Enter") {
+        e.preventDefault();
+        shiftOnlyPressed = false;
+        if (e.shiftKey) {
+            onShowAnswer();
+        } else {
+            onCheck();
+        }
+        return;
+    }
+    shiftOnlyPressed = false;
+}
+
+function handleMobileKeyup(e) {
+    if (e.key === "Shift" && shiftOnlyPressed) {
+        shiftOnlyPressed = false;
+        onShowAnswer();
+    }
+}
+
 export function wirePracticeEvents() {
     const refs = getPracticeRefs();
     refs.primaryBtn?.addEventListener("click", onCheck);
     refs.hintBtn?.addEventListener("click", onShowAnswer);
     refs.meaningToggleBtn?.addEventListener("click", onMeaningToggle);
+    refs.pastInput?.addEventListener("keydown", handleMobileKeydown);
+    refs.ppInput?.addEventListener("keydown", handleMobileKeydown);
+    refs.pastInput?.addEventListener("keyup", handleMobileKeyup);
+    refs.ppInput?.addEventListener("keyup", handleMobileKeyup);
 }
