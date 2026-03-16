@@ -1122,9 +1122,19 @@ body {
     max-height: none;
 }
 
+.summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
 .summary-btn {
     width: 100%;
     min-height: 52px;
+}
+
+.summary-btn-repeat {
+    order: -1;
 }
 
 /* ---------- Login modal ---------- */

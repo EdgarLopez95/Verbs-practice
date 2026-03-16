@@ -244,8 +244,9 @@ function formatVerbLine(verb) {
  * Muestra la pantalla final del set (resumen + lista de verbos con hint).
  * @param {{ correct: number, incorrect: number, accuracy: number, hintUsedVerbs: Array }} stats
  * @param {() => void} onStartAnotherSet - callback al pulsar "Start another set"
+ * @param {() => void} [onRepeatSet] - callback al pulsar "Repeat this set"
  */
-export function renderFinalScreen(stats, onStartAnotherSet) {
+export function renderFinalScreen(stats, onStartAnotherSet, onRepeatSet) {
     const section = document.getElementById("practice");
     if (!section) return;
 
@@ -309,13 +310,26 @@ export function renderFinalScreen(stats, onStartAnotherSet) {
     }
     listSection.appendChild(listContent);
 
+    const actionsWrap = document.createElement("div");
+    actionsWrap.className = "summary-actions";
+
+    if (typeof onRepeatSet === "function") {
+        const repeatBtn = document.createElement("button");
+        repeatBtn.type = "button";
+        repeatBtn.className = "practice-btn btn-secondary summary-btn summary-btn-repeat";
+        repeatBtn.textContent = "Repeat this set";
+        repeatBtn.addEventListener("click", onRepeatSet);
+        actionsWrap.appendChild(repeatBtn);
+    }
+
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "practice-btn btn-primary summary-btn";
     btn.textContent = "Start another set";
     btn.addEventListener("click", onStartAnotherSet);
+    actionsWrap.appendChild(btn);
 
-    card.append(title, subtitle, statsGrid, listSection, btn);
+    card.append(title, subtitle, statsGrid, listSection, actionsWrap);
     container.append(badge, card);
     section.appendChild(container);
 }

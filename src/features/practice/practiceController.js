@@ -23,6 +23,9 @@ let rowDone = [];
 let resizeListenerAttached = false;
 /** true cuando solo se pulsó Shift (para atajo Shift = Show answer sin activar al escribir mayúsculas) */
 let shiftOnlyPressed = false;
+/** Set e índice del último set completado, para "Repeat this set" */
+let lastCompletedSet = null;
+let lastCompletedSetIndex = 0;
 
 function resetSetState() {
     currentSet = [];
@@ -44,6 +47,18 @@ function matchesForm(userValue, formArray) {
 function getLevelState() {
     const key = getActiveLevelKey();
     return key ? levelsState[key] : null;
+}
+
+/** Restaura el set recién completado y vuelve a la vista de práctica (Repeat this set). */
+function repeatCompletedSet() {
+    const levelState = getLevelState();
+    if (!levelState || !lastCompletedSet?.length) return;
+    levelState.sets[lastCompletedSetIndex] = lastCompletedSet;
+    levelState.setIndex = lastCompletedSetIndex;
+    levelState.verbIndex = 0;
+    resetSetState();
+    renderPracticeView();
+    initPracticeController();
 }
 
 export function initPracticeController() {
@@ -187,6 +202,8 @@ function onCheckDesktop(rowIndex, desktopRefs, levelState) {
 
         const allDone = rowDone.every(Boolean);
         if (allDone) {
+            lastCompletedSet = currentSet.slice();
+            lastCompletedSetIndex = levelState.setIndex;
             advanceSet(levelState);
             const incorrect = hintCount;
             const accuracy = Math.round(((SET_SIZE - incorrect) / SET_SIZE) * 100);
@@ -203,7 +220,8 @@ function onCheckDesktop(rowIndex, desktopRefs, levelState) {
                     resetSetState();
                     renderPracticeView();
                     initPracticeController();
-                }
+                },
+                repeatCompletedSet
             );
         } else {
             setTimeout(() => focusNextPendingRow(desktopRefs), 0);
@@ -423,6 +441,8 @@ function onCheck() {
         setTimeout(() => {
             if (refs.card) refs.card.classList.add("fade-out");
             setTimeout(() => {
+                lastCompletedSet = currentSet.slice();
+                lastCompletedSetIndex = levelState.setIndex;
                 advanceVerb(levelState);
                 if (levelState.verbIndex === 0) {
                     if (refs.progressFill) refs.progressFill.style.width = "100%";
@@ -442,7 +462,8 @@ function onCheck() {
                             resetSetState();
                             renderPracticeView();
                             initPracticeController();
-                        }
+                        },
+                        repeatCompletedSet
                     );
                 } else {
                     currentSet = getCurrentSet(levelState);
