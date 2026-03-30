@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="description" content="Practica verbos irregulares en inglés con Verb Flow">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Verb Flow">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <base href="./">
     <title>Verb Flow</title>
+    <link rel="manifest" href="assets/manifest.webmanifest">
+    <link rel="icon" href="assets/icons/logo.png" type="image/png" sizes="512x512">
+    <link rel="apple-touch-icon" href="assets/icons/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +23,10 @@
     <div id="app">
         <header class="hero" id="appHeader">
             <div class="header-inner">
-                <span class="hero-brand">Verb Flow</span>
+                <div class="hero-brand" aria-label="Verb Flow">
+                    <img src="assets/icons/logo.png" alt="" class="hero-brand__logo" width="40" height="40" decoding="async" role="presentation">
+                    <span class="hero-brand__text">Verb Flow</span>
+                </div>
             </div>
             <div id="heroPracticeBlock" class="hero-practice-block hidden">
                 <div class="hero-practice">

@@ -70,6 +70,79 @@ body {
     display: none;
 }
 
+/* ---------- Banner instalar PWA (móvil) ---------- */
+.install-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    padding: var(--s-2);
+    padding-bottom: max(var(--s-2), env(safe-area-inset-bottom, 16px));
+    pointer-events: none;
+}
+
+.install-banner__inner {
+    pointer-events: auto;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: var(--s-2) var(--s-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.12);
+}
+
+.install-banner__title {
+    margin: 0 0 var(--s-1);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.install-banner__text {
+    margin: 0 0 var(--s-2);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--text-2);
+}
+
+.install-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1);
+    justify-content: flex-end;
+}
+
+.install-banner__btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+}
+
+.install-banner__btn--primary {
+    background: var(--primary-600);
+    color: #fff;
+}
+
+.install-banner__btn--primary:hover {
+    background: var(--primary-700);
+}
+
+.install-banner__btn--ghost {
+    background: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+}
+
+.install-banner__btn--ghost:hover {
+    background: var(--bg);
+}
+
 #app {
     height: 100%;
     min-height: 100dvh;
@@ -104,6 +177,21 @@ body {
 }
 
 .hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.hero-brand__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+.hero-brand__text {
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: -0.01em;

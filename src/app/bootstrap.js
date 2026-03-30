@@ -1,5 +1,6 @@
 import { loadVerbs, buildPools, buildLevelState } from "../services/verbsService.js";
 import { initPractice } from "../features/practice/index.js";
+import { initInstallPrompt } from "./installPrompt.js";
 
 const LEVEL_KEYS = ["mandatory", "medium", "hard"];
 
@@ -161,5 +162,6 @@ function initNavigation() {
 
 initNavigation();
 showLevelSelect();
+initInstallPrompt();
 
 loadVerbs().catch((err) => console.error("Dataset load failed", err));
