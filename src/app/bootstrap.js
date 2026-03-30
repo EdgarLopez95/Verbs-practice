@@ -162,6 +162,7 @@ function initNavigation() {
 
 initNavigation();
 showLevelSelect();
+/* PWA: manifest + Service Worker (sw.js) + banner de instalación */
 initInstallPrompt();
 
 loadVerbs().catch((err) => console.error("Dataset load failed", err));

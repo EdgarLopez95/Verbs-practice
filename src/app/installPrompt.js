@@ -1,12 +1,4 @@
-const STORAGE_KEY = "vf_install_banner_dismissed";
-
-function isMobileViewport() {
-    return window.matchMedia("(max-width: 768px)").matches;
-}
-
-function isMobileUserAgent() {
-    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
+const STORAGE_KEY = "vf_pwa_install_dismissed";
 
 function isStandalone() {
     return (
@@ -19,91 +11,138 @@ function isIOS() {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
-function registerServiceWorker() {
-    if (!("serviceWorker" in navigator)) return;
-    const ok =
-        location.protocol === "https:" ||
-        location.hostname === "localhost" ||
-        location.hostname === "127.0.0.1";
-    if (!ok) return;
-    const url = new URL("sw.js", document.baseURI || window.location.href).href;
-    navigator.serviceWorker.register(url, { scope: new URL("./", document.baseURI || window.location.href).href }).catch(() => {});
+function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches || isIOS();
 }
 
 /**
- * Banner para instalar la web como app en el móvil (Android: beforeinstallprompt; iOS: instrucciones).
+ * Registra el Service Worker en la raíz del sitio (HTTPS o localhost).
+ */
+export function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+    const secure =
+        location.protocol === "https:" ||
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
+    if (!secure) return;
+    const swUrl = new URL("sw.js", document.baseURI || window.location.href).href;
+    const scope = new URL("./", document.baseURI || window.location.href).href;
+    navigator.serviceWorker.register(swUrl, { scope }).catch(() => {});
+}
+
+function getLogoUrl() {
+    try {
+        return new URL("assets/icons/logo.png", document.baseURI || window.location.href).href;
+    } catch {
+        return "assets/icons/logo.png";
+    }
+}
+
+/**
+ * Banner estilo tarjeta de nivel (delgada): solo si no está instalada.
+ * Android/Chrome: muestra al dispararse beforeinstallprompt.
+ * iOS: misma tarjeta con instrucciones (sin evento de instalación nativo).
  */
 export function initInstallPrompt() {
     registerServiceWorker();
 
-    if (localStorage.getItem(STORAGE_KEY)) return;
     if (isStandalone()) return;
-    if (!isMobileViewport() && !isMobileUserAgent()) return;
-
-    const banner = document.createElement("div");
-    banner.className = "install-banner";
-    banner.setAttribute("role", "region");
-    banner.setAttribute("aria-label", "Instalar aplicación");
-
-    const inner = document.createElement("div");
-    inner.className = "install-banner__inner";
-
-    const title = document.createElement("p");
-    title.className = "install-banner__title";
-    title.textContent = "Instala Verb Flow en tu teléfono";
-
-    const text = document.createElement("p");
-    text.className = "install-banner__text";
-
-    if (isIOS()) {
-        text.textContent =
-            "Pulsa Compartir y elige «Añadir a la pantalla de inicio» para usarla como app.";
-    } else {
-        text.textContent =
-            "Puedes instalar esta página como app: usa el menú del navegador (⋮) y «Instalar aplicación» o «Añadir a la pantalla de inicio».";
-    }
-
-    const actions = document.createElement("div");
-    actions.className = "install-banner__actions";
-
-    const installBtn = document.createElement("button");
-    installBtn.type = "button";
-    installBtn.className = "install-banner__btn install-banner__btn--primary";
-    installBtn.textContent = "Instalar";
-    installBtn.hidden = true;
-
-    const dismissBtn = document.createElement("button");
-    dismissBtn.type = "button";
-    dismissBtn.className = "install-banner__btn install-banner__btn--ghost";
-    dismissBtn.textContent = "Ahora no";
+    if (localStorage.getItem(STORAGE_KEY)) return;
 
     let deferredPrompt = null;
+    let shown = false;
 
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.hidden = false;
-        if (!isIOS()) {
-            text.textContent =
-                "Instala Verb Flow como app en tu dispositivo para abrirla rápido desde la pantalla de inicio.";
+    const wrap = document.createElement("div");
+    wrap.className = "pwa-install-wrap";
+    wrap.setAttribute("role", "region");
+    wrap.setAttribute("aria-label", "Instalar Verb Flow");
+
+    const card = document.createElement("div");
+    card.className = "pwa-install-card";
+
+    const row = document.createElement("div");
+    row.className = "pwa-install-card__row";
+
+    const icon = document.createElement("img");
+    icon.className = "pwa-install-card__icon";
+    icon.src = getLogoUrl();
+    icon.alt = "";
+    icon.width = 48;
+    icon.height = 48;
+    icon.decoding = "async";
+
+    const copy = document.createElement("div");
+    copy.className = "pwa-install-card__copy";
+
+    const headline = document.createElement("p");
+    headline.className = "pwa-install-card__headline";
+    headline.textContent = "¡Mejora tu fluidez más rápido!";
+
+    const sub = document.createElement("p");
+    sub.className = "pwa-install-card__sub";
+
+    copy.append(headline, sub);
+
+    row.append(icon, copy);
+    card.appendChild(row);
+
+    const cta = document.createElement("button");
+    cta.type = "button";
+    cta.className = "pwa-install-card__cta";
+    cta.textContent = "Instalar Verb Flow";
+
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "pwa-install-card__dismiss";
+    dismiss.textContent = "Ahora no";
+
+    function show() {
+        if (shown) return;
+        shown = true;
+        wrap.appendChild(card);
+        document.body.appendChild(wrap);
+    }
+
+    function remove() {
+        localStorage.setItem(STORAGE_KEY, "1");
+        wrap.remove();
+    }
+
+    dismiss.addEventListener("click", remove);
+
+    cta.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice.catch(() => ({ outcome: "dismissed" }));
+        deferredPrompt = null;
+        if (choice?.outcome === "accepted") {
+            remove();
         }
     });
 
-    installBtn.addEventListener("click", async () => {
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice.catch(() => {});
-        deferredPrompt = null;
-        installBtn.hidden = true;
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        if (!isMobile()) return;
+        deferredPrompt = e;
+        sub.textContent = "Abre Verb Flow como app desde tu pantalla de inicio.";
+        card.append(cta, dismiss);
+        show();
     });
 
-    dismissBtn.addEventListener("click", () => {
-        localStorage.setItem(STORAGE_KEY, "1");
-        banner.remove();
-    });
-
-    actions.append(installBtn, dismissBtn);
-    inner.append(title, text, actions);
-    banner.appendChild(inner);
-    document.body.appendChild(banner);
+    /* iOS: misma tarjeta, sin beforeinstallprompt */
+    if (isIOS() && isMobile()) {
+        sub.textContent =
+            "Pulsa Compartir y elige «Añadir a la pantalla de inicio».";
+        cta.classList.add("pwa-install-card__cta--ios");
+        cta.textContent = "Entendido";
+        cta.addEventListener(
+            "click",
+            () => {
+                remove();
+            },
+            { once: true }
+        );
+        card.append(cta, dismiss);
+        show();
+    }
 }
