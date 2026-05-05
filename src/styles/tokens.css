@@ -1,0 +1,68 @@
+:root {
+    color-scheme: light;
+
+    --brand-yellow: #FFF257;
+    --brand-sky: #6FD4F7;
+    --brand-blue: #2563EB;
+    --brand-blue-700: #1D4ED8;
+    --brand-blue-800: #1E40AF;
+
+    --ink-950: #07111F;
+    --ink-900: #0F172A;
+    --ink-700: #334155;
+    --ink-600: #475569;
+    --ink-500: #64748B;
+    --ink-200: #E2E8F0;
+    --ink-100: #F1F5F9;
+    --ink-50: #F8FAFC;
+
+    --surface: rgba(255, 255, 255, 0.94);
+    --surface-solid: #FFFFFF;
+    --surface-soft: rgba(248, 250, 252, 0.82);
+    --border: rgba(148, 163, 184, 0.28);
+    --border-strong: rgba(37, 99, 235, 0.32);
+
+    --success: #16A34A;
+    --success-bg: #DCFCE7;
+    --error: #DC2626;
+    --error-bg: #FEE2E2;
+    --hint: rgba(255, 242, 87, 0.38);
+
+    --text: var(--ink-900);
+    --text-2: var(--ink-600);
+    --bg: #EEF4FB;
+
+    --gradient-hero:
+        radial-gradient(circle at 18% 14%, rgba(111, 212, 247, 0.58), transparent 32%),
+        radial-gradient(circle at 86% 8%, rgba(255, 242, 87, 0.28), transparent 24%),
+        linear-gradient(135deg, #2563EB 0%, #1D4ED8 72%, #1E40AF 100%);
+    --gradient-page:
+        radial-gradient(circle at 12% 10%, rgba(111, 212, 247, 0.26), transparent 28rem),
+        radial-gradient(circle at 92% 12%, rgba(255, 242, 87, 0.2), transparent 26rem),
+        linear-gradient(180deg, #F7FBFF 0%, #EEF4FB 100%);
+    --gradient-action: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+    --gradient-action-hover: linear-gradient(180deg, #60A5FA 0%, #2563EB 100%);
+    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 255, 0.82));
+
+    --shadow-soft: 0 18px 46px rgba(15, 23, 42, 0.10);
+    --shadow-card: 0 18px 44px rgba(37, 99, 235, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-action: 0 14px 28px rgba(37, 99, 235, 0.28);
+    --shadow-focus: 0 0 0 4px rgba(111, 212, 247, 0.42);
+
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --s-1: 8px;
+    --s-1_5: 12px;
+    --s-2: 16px;
+    --s-3: 24px;
+    --s-4: 32px;
+    --s-5: 40px;
+    --s-6: 48px;
+
+    --container-mobile: 520px;
+    --container-desktop: 1280px;
+    --hero-h: 72px;
+}

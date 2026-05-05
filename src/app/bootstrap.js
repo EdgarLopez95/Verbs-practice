@@ -1,11 +1,14 @@
 import { loadVerbs, buildPools, buildLevelState } from "../services/verbsService.js";
 import { initPractice } from "../features/practice/index.js";
-import { initInstallPrompt } from "./installPrompt.js";
-
-const LEVEL_KEYS = ["mandatory", "medium", "hard"];
+import { initPwa } from "./pwa/index.js";
+import { LEVEL_KEYS } from "../shared/constants/levels.js";
+import { escapeHtml, qsa, setHidden } from "../shared/utils/dom.js";
+import { animateLevelScreen, animateViewEnter } from "../shared/animations/motion.js";
 
 export const levelsState = {};
-LEVEL_KEYS.forEach((k) => { levelsState[k] = null; });
+LEVEL_KEYS.forEach((key) => {
+    levelsState[key] = null;
+});
 
 export let activeLevelKey = null;
 
@@ -21,22 +24,21 @@ let lastPools = null;
 
 const VIEW_IDS = ["levelSelect", "practice", "verbsList"];
 
-/**
- * Muestra solo la vista indicada. No toca el header; solo cambia la vista del main.
- * heroPracticeBlock se muestra solo cuando viewId === "practice".
- */
 function showView(viewId) {
     const heroBlock = document.getElementById("heroPracticeBlock");
+
     VIEW_IDS.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle("hidden", id !== viewId);
+        setHidden(document.getElementById(id), id !== viewId);
     });
-    if (heroBlock) heroBlock.classList.toggle("hidden", viewId !== "practice");
+    setHidden(heroBlock, viewId !== "practice");
 
     if (viewId === "verbsList") {
         const wrap = document.getElementById("verbsListTableWrap");
         if (wrap) wrap.scrollTop = 0;
     }
+
+    animateViewEnter(viewId);
+    if (viewId === "levelSelect") animateLevelScreen();
 }
 
 function showLevelSelect() {
@@ -55,14 +57,16 @@ async function startPracticeForLevel(levelKey) {
     let verbs;
     try {
         verbs = await loadVerbs();
-    } catch (e) {
-        console.error("Load verbs failed", e);
+    } catch (error) {
+        console.error("Load verbs failed", error);
         return;
     }
+
     if (!verbs || verbs.length === 0) {
         console.error("No verbs loaded");
         return;
     }
+
     lastPools = buildPools(verbs);
     const pool = lastPools[levelKey];
     if (!pool || pool.length === 0) {
@@ -71,15 +75,11 @@ async function startPracticeForLevel(levelKey) {
     }
 
     levelsState[levelKey] = buildLevelState(pool);
-
-    const state = levelsState[levelKey];
-    const currentVerb = state?.sets?.[0]?.[0];
-    console.log("[VF] init level:", levelKey, "sets length:", state?.sets?.length, "currentVerb.base:", currentVerb?.base);
-
     setActiveLevelKey(levelKey);
     showPractice();
     initPractice();
-    /* Evitar que el teclado se abra: blur y foco en contenedor no editable */
+
+    // Keep mobile keyboards closed until the user intentionally taps an input.
     if (typeof document.activeElement?.blur === "function") document.activeElement.blur();
     const practiceEl = document.getElementById("practice");
     if (practiceEl) {
@@ -88,37 +88,34 @@ async function startPracticeForLevel(levelKey) {
     }
     setTimeout(() => {
         if (typeof document.activeElement?.blur === "function") document.activeElement.blur();
-        if (practiceEl) practiceEl.focus({ preventScroll: true });
+        practiceEl?.focus({ preventScroll: true });
     }, 0);
 }
 
 function onChangeLevel() {
-    if (activeLevelKey && lastPools && lastPools[activeLevelKey]) {
+    if (activeLevelKey && lastPools?.[activeLevelKey]) {
         levelsState[activeLevelKey] = buildLevelState(lastPools[activeLevelKey]);
     }
     setActiveLevelKey(null);
     showLevelSelect();
 }
 
-function escapeHtml(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-}
-
 async function renderVerbsTable(verbs) {
     const tbody = document.getElementById("verbsTableBody");
     if (!tbody) return;
+
     if (!verbs || verbs.length === 0) {
-        tbody.innerHTML = "<tr><td colspan=\"3\">No verbs loaded.</td></tr>";
+        tbody.innerHTML = '<tr><td colspan="3">No verbs loaded.</td></tr>';
         return;
     }
-    const pastStr = (v) => (Array.isArray(v.past) ? v.past.join(" / ") : String(v.past ?? ""));
-    const ppStr = (v) => (Array.isArray(v.pp) ? v.pp.join(" / ") : String(v.pp ?? ""));
+
+    const pastStr = (verb) => (Array.isArray(verb.past) ? verb.past.join(" / ") : String(verb.past ?? ""));
+    const ppStr = (verb) => (Array.isArray(verb.pp) ? verb.pp.join(" / ") : String(verb.pp ?? ""));
+
     tbody.innerHTML = verbs
         .map(
-            (v) =>
-                `<tr><td>${escapeHtml(v.base)}</td><td>${escapeHtml(pastStr(v))}</td><td>${escapeHtml(ppStr(v))}</td></tr>`
+            (verb) =>
+                `<tr><td>${escapeHtml(verb.base)}</td><td>${escapeHtml(pastStr(verb))}</td><td>${escapeHtml(ppStr(verb))}</td></tr>`
         )
         .join("");
 }
@@ -129,40 +126,37 @@ async function loadAndRenderVerbsTable() {
 }
 
 function initNavigation() {
-    const levelCards = document.querySelectorAll(".level-card[data-level]");
+    const levelCards = qsa(".level-card[data-level]");
+    const homeLogoBtn = document.getElementById("homeLogoBtn");
     const changeLevelBtn = document.getElementById("changeLevelBtn");
     const verbsListBtn = document.getElementById("verbsListBtn");
+    const verbsListBackBtn = document.getElementById("verbsListBackBtn");
 
     levelCards.forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        btn.addEventListener("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const levelKey = btn.getAttribute("data-level");
             if (!levelKey || !LEVEL_KEYS.includes(levelKey)) return;
             await startPracticeForLevel(levelKey);
         });
     });
 
-    if (changeLevelBtn) changeLevelBtn.addEventListener("click", onChangeLevel);
+    homeLogoBtn?.addEventListener("click", onChangeLevel);
+    changeLevelBtn?.addEventListener("click", onChangeLevel);
 
-    if (verbsListBtn) {
-        verbsListBtn.addEventListener("click", async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            await loadAndRenderVerbsTable();
-            showVerbsList();
-        });
-    }
+    verbsListBtn?.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        await loadAndRenderVerbsTable();
+        showVerbsList();
+    });
 
-    const verbsListBackBtn = document.getElementById("verbsListBackBtn");
-    if (verbsListBackBtn) {
-        verbsListBackBtn.addEventListener("click", () => showLevelSelect());
-    }
+    verbsListBackBtn?.addEventListener("click", showLevelSelect);
 }
 
 initNavigation();
 showLevelSelect();
-/* PWA: manifest + Service Worker (sw.js) + banner de instalación */
-initInstallPrompt();
+initPwa();
 
-loadVerbs().catch((err) => console.error("Dataset load failed", err));
+loadVerbs().catch((error) => console.error("Dataset load failed", error));

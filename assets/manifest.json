@@ -1,25 +1,29 @@
 {
+  "id": "./",
   "name": "Verb Flow",
   "short_name": "Verb Flow",
-  "description": "Practica verbos irregulares en inglés",
+  "description": "Practica verbos irregulares en ingles con sesiones rapidas.",
+  "lang": "es",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "portrait-primary",
-  "background_color": "#FFFFFF",
   "theme_color": "#2563EB",
-  "lang": "es",
+  "background_color": "#EEF4FB",
+  "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "assets/icons/logo.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "assets/icons/ico.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "assets/icons/logo.png",
-      "sizes": "192x192",
-      "type": "image/png",
+      "src": "assets/icons/ico.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "maskable"
     }
   ]

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2563EB">
-    <meta name="description" content="Practica verbos irregulares en inglés con Verb Flow">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="Practica verbos irregulares en ingles con Verb Flow">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Verb Flow">
@@ -12,27 +13,39 @@
     <base href="./">
     <title>Verb Flow</title>
     <link rel="manifest" href="assets/manifest.json">
-    <link rel="icon" href="assets/icons/logo.png" type="image/png" sizes="512x512">
-    <link rel="apple-touch-icon" href="assets/icons/logo.png">
+    <link rel="icon" href="assets/icons/ico.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/ico.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to practice</a>
     <div id="app">
         <header class="hero" id="appHeader">
             <div class="header-inner">
-                <div class="hero-brand" aria-label="Verb Flow">
-                    <img src="assets/icons/logo.png" alt="" class="hero-brand__logo" width="40" height="40" decoding="async" role="presentation">
-                    <span class="hero-brand__text">Verb Flow</span>
+                <button type="button" id="homeLogoBtn" class="hero-brand" aria-label="Go to home">
+                    <img src="assets/icons/logo.svg" alt="" class="hero-brand__logo" width="150" height="40" decoding="async" role="presentation">
+                </button>
+                <div class="desktop-header-actions" aria-hidden="true">
+                    <span class="desktop-header-pill">Irregular verbs</span>
                 </div>
             </div>
+
             <div id="heroPracticeBlock" class="hero-practice-block hidden">
                 <div class="hero-practice">
                     <div class="hero-title-row">
+                        <button type="button" id="changeLevelBtn" class="hero-change-level">
+                            <span class="icon icon--sm" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m15 18-6-6 6-6"/><path d="M21 12H9"/>
+                                </svg>
+                            </span>
+                            <span>Change level</span>
+                        </button>
                         <h1 class="hero-title">Practice</h1>
-                        <button type="button" id="changeLevelBtn" class="hero-change-level">Change level</button>
                     </div>
                     <div class="hero-meta-row">
                         <span class="hero-set">Set: <span id="setCount">0</span>/5</span>
@@ -46,74 +59,130 @@
                 </div>
             </div>
         </header>
-        <main class="app-main">
+
+        <main class="app-main" id="main-content">
             <section id="levelSelect" class="view">
                 <div class="level-screen">
                     <div class="level-hero">
-                        <span class="level-hero__icon" aria-hidden="true">🎯</span>
+                        <span class="level-hero__icon icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </span>
                         <div class="level-hero__content">
                             <p class="level-hero__headline">Master irregular verbs</p>
+                            <p class="level-hero__subtitle">Practice the 150 most common English irregular verbs in fast focused sessions.</p>
                             <button type="button" id="verbsListBtn" class="level-hero__btn">
-                                <span aria-hidden="true">📋</span>
+                                <span class="icon icon--sm" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/>
+                                    </svg>
+                                </span>
                                 <span>150 most used verbs</span>
                             </button>
                         </div>
                     </div>
+
                     <div class="level-intro">
                         <h1 class="level-intro-title">Select your level</h1>
                     </div>
+
                     <div class="level-cards">
                         <button type="button" class="level-card level-card--mandatory" data-level="mandatory">
-                            <span class="level-card__bg-icon" aria-hidden="true">✓</span>
+                            <span class="level-card__bg-icon" aria-hidden="true">01</span>
                             <div class="level-card__header">
                                 <div class="level-card__titleGroup">
-                                    <span class="level-card__icon" aria-hidden="true">✅</span>
+                                    <span class="level-card__icon icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                    </span>
                                     <h3 class="level-card__title">Obligatoria</h3>
                                 </div>
-                                <span class="level-badge">Recommended</span>
+                                <span class="level-badge">Essential</span>
+                            </div>
+                            <div class="level-card__art level-card__art--mandatory" aria-hidden="true">
+                                <svg viewBox="0 0 220 150" fill="none">
+                                    <rect x="38" y="32" width="118" height="96" rx="22" fill="#6FD4F7" opacity=".16"/>
+                                    <rect x="48" y="42" width="118" height="96" rx="22" stroke="#2563EB" stroke-width="9"/>
+                                    <path d="M74 27v28M140 27v28M50 72h114" stroke="#2563EB" stroke-width="9" stroke-linecap="round"/>
+                                    <path d="m82 106 18 18 39-44" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="172" cy="46" r="13" fill="#FFF257"/>
+                                    <path d="M172 22v11M172 59v11M148 46h11M185 46h11" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+                                </svg>
                             </div>
                             <div class="level-card__body">
+                                <p class="level-card__description">Daily verbs you will use constantly.</p>
                                 <p class="level-card__count">50 verbos</p>
-                                <p class="level-card__metric">Used verbs in daily conversation</p>
-                                <p class="level-card__cta">Tap to begin</p>
+                                <p class="level-card__metric">Core verbs for everyday conversations</p>
+                                <p class="level-card__cta">Start practice</p>
                             </div>
                         </button>
+
                         <button type="button" class="level-card level-card--medium" data-level="medium">
-                            <span class="level-card__bg-icon" aria-hidden="true">⚡</span>
+                            <span class="level-card__bg-icon" aria-hidden="true">02</span>
                             <div class="level-card__header">
                                 <div class="level-card__titleGroup">
-                                    <span class="level-card__icon" aria-hidden="true">⚡</span>
+                                    <span class="level-card__icon icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 13h7l-1 7 9-13h-7l1-7z"/></svg>
+                                    </span>
                                     <h3 class="level-card__title">Medio</h3>
                                 </div>
-                                <span class="level-badge">Balanced</span>
+                                <span class="level-badge">Flow</span>
+                            </div>
+                            <div class="level-card__art level-card__art--medium" aria-hidden="true">
+                                <svg viewBox="0 0 220 150" fill="none">
+                                    <circle cx="110" cy="76" r="52" fill="#6FD4F7" opacity=".14"/>
+                                    <path d="M162 74a52 52 0 0 0-88-36L58 54" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M58 29v25h25" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M58 78a52 52 0 0 0 88 36l16-16" stroke="#6FD4F7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M162 123V98h-25" stroke="#6FD4F7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="110" cy="76" r="22" fill="#FFF257" opacity=".72"/>
+                                    <path d="M110 60v18l14 8" stroke="#2563EB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
                             <div class="level-card__body">
+                                <p class="level-card__description">Useful verbs for stories and routines.</p>
                                 <p class="level-card__count">50 verbos</p>
-                                <p class="level-card__metric">Common verbs used in storytelling</p>
-                                <p class="level-card__cta">Tap to begin</p>
+                                <p class="level-card__metric">Build speed with common irregular forms</p>
+                                <p class="level-card__cta">Start practice</p>
                             </div>
                         </button>
+
                         <button type="button" class="level-card level-card--hard" data-level="hard">
-                            <span class="level-card__bg-icon" aria-hidden="true">🔥</span>
+                            <span class="level-card__bg-icon" aria-hidden="true">03</span>
                             <div class="level-card__header">
                                 <div class="level-card__titleGroup">
-                                    <span class="level-card__icon" aria-hidden="true">🔥</span>
-                                    <h3 class="level-card__title">Difícil</h3>
+                                    <span class="level-card__icon icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 9.7 8.5 4 10.8l5.7 2.3L12 19l2.3-5.9 5.7-2.3-5.7-2.3L12 3z"/></svg>
+                                    </span>
+                                    <h3 class="level-card__title">Dificil</h3>
                                 </div>
                                 <span class="level-badge">Challenge</span>
                             </div>
+                            <div class="level-card__art level-card__art--hard" aria-hidden="true">
+                                <svg viewBox="0 0 220 150" fill="none">
+                                    <path d="M28 120 78 44l34 48 22-30 58 58H28Z" fill="#FFF257" opacity=".18"/>
+                                    <path d="M28 120 78 44l34 48 22-30 58 58H28Z" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M78 44 96 70l-16-5-14 18" stroke="#6FD4F7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M150 43h32v35" stroke="#2563EB" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="m182 43-42 42" stroke="#2563EB" stroke-width="9" stroke-linecap="round"/>
+                                    <circle cx="166" cy="29" r="12" fill="#FFF257"/>
+                                </svg>
+                            </div>
                             <div class="level-card__body">
+                                <p class="level-card__description">Less obvious forms that sharpen recall.</p>
                                 <p class="level-card__count">50 verbos</p>
-                                <p class="level-card__metric">Advanced and irregular edge cases</p>
-                                <p class="level-card__cta">Tap to begin</p>
+                                <p class="level-card__metric">Train the irregular edge cases</p>
+                                <p class="level-card__cta">Start practice</p>
                             </div>
                         </button>
                     </div>
                 </div>
             </section>
+
             <section id="practice" class="view hidden" tabindex="-1">
                 <h1>Practice</h1>
             </section>
+
             <section id="verbsList" class="view hidden" tabindex="-1">
                 <div class="verbs-list-screen">
                     <div class="verbs-list-head">
@@ -137,7 +206,7 @@
         </main>
     </div>
 
-    <!-- PWA: manifest arriba; Service Worker y banner de instalación se registran en bootstrap.js -->
+    <!-- PWA: manifest, service worker and install UI are initialized from src/app/pwa. -->
     <script type="module" src="src/app/bootstrap.js"></script>
 </body>
 </html>
